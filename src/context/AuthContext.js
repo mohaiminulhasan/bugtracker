@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     const expiresAt = localStorage.getItem('expiresAt');
     const userInfo = localStorage.getItem('userInfo');
-    console.log(token, expiresAt, userInfo);
+    // console.log(token, expiresAt, userInfo);
 
     const [authState, setAuthState] = useState({
                 token,

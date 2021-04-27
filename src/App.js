@@ -3,7 +3,7 @@ import './App.css';
 import { useContext } from 'react';
 import { Route, Redirect, Switch} from 'react-router-dom';
 
-import { Login } from './pages';
+import { Login, Dashboard } from './pages';
 
 import { AuthContext } from './context/AuthContext';
 
@@ -27,10 +27,10 @@ const AppRoutes = () => {
   return (
     <Switch>
       <Route exact path="/" render={Login} />
-      {/* <AuthenticatedRoute path="/list">
-        <List/>
+      <AuthenticatedRoute path="/dashboard">
+        <Dashboard />
       </AuthenticatedRoute>
-      <Route path="/invite" render={Invite} /> */}
+      {/* <Route path="/invite" render={Invite} /> */}
     </Switch>
   );
 }
