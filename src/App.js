@@ -10,7 +10,7 @@ import { AuthContext } from './context/AuthContext';
 const AuthenticatedRoute = ({ children, ...rest }) => {
   const authContext = useContext(AuthContext);
 
-  console.log(children);
+  // console.log(children);
 
   return (
     <Route {...rest} render={() => 
@@ -26,11 +26,12 @@ const AuthenticatedRoute = ({ children, ...rest }) => {
 const AppRoutes = () => {
   return (
     <Switch>
-      <Route exact path="/" render={Login} />
+      <Route exact path="/">
+        <Login/>
+      </Route>
       <AuthenticatedRoute path="/dashboard">
         <Dashboard />
       </AuthenticatedRoute>
-      {/* <Route path="/invite" render={Invite} /> */}
     </Switch>
   );
 }

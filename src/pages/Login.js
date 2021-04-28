@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 import { userService } from '../utils/user.service';
 
 
-const Login = () => {
+export const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -14,7 +14,7 @@ const Login = () => {
     const [loginSuccess, setLoginSuccess] = useState();
     const [loginError, setLoginError] = useState();
     const [loginLoading, setLoginLoading] = useState(false);
-    const [redirectOnLogin, setRedirectOnLogin] = useState(true);
+    const [redirectOnLogin, setRedirectOnLogin] = useState(false);
 
     const submitCredentials = async (e) => {
         e.preventDefault();
@@ -57,4 +57,4 @@ const Login = () => {
     );
 }
 
-export default withRouter(Login);
+// export default Login;
