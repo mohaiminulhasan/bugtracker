@@ -1,5 +1,13 @@
+import { Topbar } from '../components';
+
 const Dashboard = () => {
-  return <h3>Dashboard</h3>
+  return (
+    <>
+    <Topbar/>
+
+    <h3>Dashboard</h3>
+    </>
+  );
 }
 
 export default Dashboard;

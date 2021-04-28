@@ -48,8 +48,8 @@ export const Login = () => {
         <em>{ loginError }</em>
 
         <form onSubmit={submitCredentials}>
-            <input type='text' onChange={(e) => setUsername(e.target.value)} value={username} name='username' placeholder='Username' autoFocus /> <br/>
-            <input type='password' onChange={(e) => setPassword(e.target.value)} value={password} name='password' placeholder='Password' /> <br/>
+            <input type='text' onChange={(e) => setUsername(e.target.value)} value={username} name='username' placeholder='Username' required autoFocus /> <br/>
+            <input type='password' onChange={(e) => setPassword(e.target.value)} value={password} name='password' placeholder='Password' required /> <br/>
 
             <button type='submit' disabled={loginLoading}>Login</button>
         </form>
