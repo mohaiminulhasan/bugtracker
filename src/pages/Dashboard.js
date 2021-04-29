@@ -1,6 +1,6 @@
 import { Topbar } from '../components';
 
-const Dashboard = () => {
+export const Dashboard = () => {
   return (
     <>
     <Topbar/>
@@ -9,5 +9,3 @@ const Dashboard = () => {
     </>
   );
 }
-
-export default Dashboard;

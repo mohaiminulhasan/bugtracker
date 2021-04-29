@@ -3,11 +3,11 @@ import './App.css';
 import { useContext } from 'react';
 import { Route, Redirect, Switch} from 'react-router-dom';
 
-import { Login, Dashboard } from './pages';
+import { Login, Dashboard, MyProjects } from './pages';
 
 import { AuthContext } from './context/AuthContext';
 
-const AuthenticatedRoute = ({ children, ...rest }) => {
+export const AuthenticatedRoute = ({ children, ...rest }) => {
   const authContext = useContext(AuthContext);
 
   // console.log(children);
@@ -27,10 +27,13 @@ const AppRoutes = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <Login/>
+        <Login />
       </Route>
       <AuthenticatedRoute path="/dashboard">
         <Dashboard />
+      </AuthenticatedRoute>
+      <AuthenticatedRoute path="/myprojects">
+        <MyProjects />
       </AuthenticatedRoute>
     </Switch>
   );

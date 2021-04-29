@@ -1,2 +1,4 @@
 export * from './Login';
-export { default as Dashboard } from './Dashboard';
+export * from './Dashboard';
+export * from './MyProjects';
+export * from './Project';
