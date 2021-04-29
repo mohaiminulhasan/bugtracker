@@ -8,7 +8,7 @@ export const Project = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const uri = 'http://127.0.0.1:8000/tickets/';
+      const uri = 'http://127.0.0.1:8000/tickets/' + projectSlug;
 
       let h = new Headers();
       h.append('Content-Type', 'application/json');
@@ -28,7 +28,7 @@ export const Project = () => {
     }
 
     fetchData();
-  }, []);
+  }, [projectSlug]);
 
   return (
     <>
