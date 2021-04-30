@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Topbar } from '../components';
-import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
+import { Link, useRouteMatch, Switch } from 'react-router-dom';
 import { AuthenticatedRoute } from '../App';
 
 import { Project } from './Project';

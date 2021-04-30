@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { Link, useRouteMatch } from 'react-router-dom';
 
 export const Project = () => {
+  let { url } = useRouteMatch();
   const { projectSlug }= useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -35,7 +37,7 @@ export const Project = () => {
     <p>{ projectSlug }</p>
 
     {loading ? <div>...loading</div> :
-      data.map((item, index) => <div key={index}>{item.title}</div>)
+      data.map((item, index) => <div key={index}><Link to={`${url}/${item.id}`} key={index}>{item.title}</Link></div>)
     }
     </>
   );

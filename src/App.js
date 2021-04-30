@@ -3,7 +3,7 @@ import './App.css';
 import { useContext } from 'react';
 import { Route, Redirect, Switch} from 'react-router-dom';
 
-import { Login, Dashboard, MyProjects } from './pages';
+import { Login, Dashboard, MyProjects, UserMgt, RoleMgt } from './pages';
 
 import { AuthContext } from './context/AuthContext';
 
@@ -34,6 +34,12 @@ const AppRoutes = () => {
       </AuthenticatedRoute>
       <AuthenticatedRoute path="/myprojects">
         <MyProjects />
+      </AuthenticatedRoute>
+      <AuthenticatedRoute path="/usermgt">
+        <UserMgt />
+      </AuthenticatedRoute>
+      <AuthenticatedRoute path="/rolemgt">
+        <RoleMgt />
       </AuthenticatedRoute>
     </Switch>
   );
