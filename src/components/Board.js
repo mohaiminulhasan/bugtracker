@@ -1,16 +1,45 @@
 export const Board = (props) => {
+  const patchTicket = async (ticket_id, board_id) => {
+    const uri = `http://127.0.0.1:8000/move/${ticket_id}/`;
+
+    let h = new Headers();
+    h.append('Content-Type', 'application/json');
+    h.append('Authorization', 'Token ' + localStorage.getItem('token'));
+
+    let req = new Request(uri, {
+      method: 'PATCH',
+      headers: h,
+      body: JSON.stringify({
+        'status': board_id
+      }),
+      mode: 'cors'
+    });
+
+    const response = await fetch(req);
+    let data = {};
+    if (response.ok) {
+      data = await response.json();
+    } else {
+      data = { 'response': 'Invalid' }
+    }
+
+    return data;
+  }
+
   const drop = e => {
     e.preventDefault();
     const ticket_id = e.dataTransfer.getData('ticket_id');
     const ticket_parent_id = e.dataTransfer.getData('ticket_parent_id');
 
-    const ticket = document.getElementById(ticket_id);
-    ticket.style.display = 'block';
-
-    e.target.appendChild(ticket);
-
     if (e.target.id !== ticket_parent_id) {
-      console.log(`${ticket_id} goes to ${e.target.id} from ${ticket_parent_id}`);
+      const res = patchTicket(ticket_id, e.target.id);
+
+      if (res.response !== 'Invalid') {
+        const ticket = document.getElementById(ticket_id);
+        ticket.style.display = 'block';
+
+        e.target.appendChild(ticket);
+      }
     }
   }
 
