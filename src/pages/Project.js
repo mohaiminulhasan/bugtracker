@@ -1,12 +1,17 @@
+import '../assets/Project.css';
+import { Board, Ticket } from '../components';
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link, useRouteMatch } from 'react-router-dom';
+
 
 export const Project = () => {
   let { url } = useRouteMatch();
   const { projectSlug }= useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const statuses = ['IB', 'EM', 'IP', 'TS', 'CO'];
 
   useEffect(() => {
     async function fetchData() {
@@ -34,11 +39,16 @@ export const Project = () => {
 
   return (
     <>
-    <p>{ projectSlug }</p>
-
-    {loading ? <div>...loading</div> :
-      data.map((item, index) => <div key={index}><Link to={`${url}/${item.id}`} key={index}>{item.title}</Link></div>)
-    }
+    <div id='boards'>
+      {loading ? null : statuses.map((status, index) => {
+        return <Board key={index} id={status} className='board'>
+          {
+            data[status].map((item, index) => <Ticket key={index} id={item.id} className='ticket' draggable="true">{item.title}</Ticket>)
+          }
+        </Board>
+      })
+      }
+    </div>
     </>
   );
 }
