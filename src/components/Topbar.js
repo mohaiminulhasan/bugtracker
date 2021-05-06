@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { AuthContext } from '../context/AuthContext';
 
@@ -12,13 +12,17 @@ export const Topbar = () => {
     authContext.logout();
   }
 
+  const linkStyle = 'text-indigo-500 hover:underline font-bold';
+  const linkAltStyle = 'text-red-500 hover:underline font-bold';
+  const activeStyle = { color: 'black' }
+
   return (
-    <nav>
-      <Link to="/dashboard">Dashboard</Link> &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to="/usermgt">User Management</Link> &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to="/rolemgt">Role Management</Link> &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to="/myprojects">My Projects</Link> &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to="/logout" onClick={handleLogout}>Logout</Link>
+    <nav className="border border-gray-500 m-4 p-2 rounded">
+      <NavLink className={linkStyle} activeStyle={activeStyle} to="/dashboard">Dashboard</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
+      <NavLink className={linkStyle} activeStyle={activeStyle} to="/usermgt">User Management</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
+      <NavLink className={linkStyle} activeStyle={activeStyle} to="/rolemgt">Role Management</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
+      <NavLink className={linkStyle} activeStyle={activeStyle} to="/myprojects">My Projects</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
+      <NavLink className={linkAltStyle} to="/logout" onClick={handleLogout}>Logout</NavLink>
     </nav>
   );
 }

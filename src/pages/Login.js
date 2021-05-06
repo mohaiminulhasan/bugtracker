@@ -39,21 +39,27 @@ export const Login = () => {
         }
     }
 
+    const textboxStyle = 'border-2 rounded border-indigo-600 my-1 px-1 w-full';
+
     return (
-        <>
-        {redirectOnLogin && <Redirect to='/dashboard' />}
-        <h3>Login</h3>
+        <div className="flex h-screen">
+            <div className="border-2 rounded-lg p-5 m-auto mt-1/4 w-1/4 min-w-max">
+            {redirectOnLogin && <Redirect to='/dashboard' />}
+            <p className="font-bold text-indigo-600">Sign In with your credentials</p>
 
-        <em>{ loginSuccess }</em>
-        <em>{ loginError }</em>
+            <em>{ loginSuccess }</em>
+            <em>{ loginError }</em>
 
-        <form onSubmit={submitCredentials}>
-            <input type='text' onChange={(e) => setUsername(e.target.value)} value={username} name='username' placeholder='Username' required autoFocus /> <br/>
-            <input type='password' onChange={(e) => setPassword(e.target.value)} value={password} name='password' placeholder='Password' required /> <br/>
+            <form onSubmit={submitCredentials}>
+                <input className={textboxStyle} type='text' onChange={(e) => setUsername(e.target.value)} value={username} name='username' placeholder='Username' required autoFocus /> <br/>
+                <input className={textboxStyle} type='password' onChange={(e) => setPassword(e.target.value)} value={password} name='password' placeholder='Password' required /> <br/>
 
-            <button type='submit' disabled={loginLoading}>Login</button>
-        </form>
-        </>
+                <div className="text-right">
+                    <button className="bg-white text-indigo-600 font-bold px-4 py-1 rounded border-2 border-indigo-300 hover:shadow-md" type='submit' disabled={loginLoading}>Login</button>
+                </div>
+            </form>
+            </div>
+        </div>
     );
 }
 

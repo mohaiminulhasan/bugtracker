@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Topbar } from '../components';
-import { Link, useRouteMatch, Switch } from 'react-router-dom';
+import { NavLink, useRouteMatch, Switch } from 'react-router-dom';
 import { AuthenticatedRoute } from '../App';
 
 import { Project } from './Project';
@@ -35,19 +35,31 @@ export const MyProjects = () => {
     fetchData();
   }, []);
 
+  const projectLinkActiveStyle = { borderBottom: '1px solid red', paddingBottom: '2px' };
+
   return (
     <>
     <Topbar />
-    <h3>My Projects</h3>
-    {loading ? <div>...loading</div> : 
-      data.map((item, index) => <div key={index}><Link to={`${url}/${item.slug}`}>{item.title}</Link></div>)
-    }
 
-    <Switch>
-      <AuthenticatedRoute path={`${path}/:projectSlug`}>
-        <Project />
-      </AuthenticatedRoute>
-    </Switch>
+    <div className="px-4">
+      <p className="font-bold text-gray-700 text-lg">My Projects</p>
+
+      <div className="flex">
+        <div className="w-1/5">
+          {loading ? <div>...loading</div> : 
+            data.map((item, index) => <div key={index}><NavLink className="leading-loose" activeStyle={projectLinkActiveStyle} to={`${url}/${item.slug}`}>{item.title}</NavLink></div>)
+          }
+        </div>
+
+        <div className="w-4/5">
+          <Switch>
+            <AuthenticatedRoute path={`${path}/:projectSlug`}>
+              <Project />
+            </AuthenticatedRoute>
+          </Switch>
+        </div>
+      </div>
+    </div>
     </>
   );
 }

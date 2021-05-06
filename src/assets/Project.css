@@ -6,11 +6,11 @@
 .board {
   display: flex;
   flex-direction: column;
-  background-color: gray;
+  background-color: whitesmoke;
   width: 250px;
   padding: 10px;
   margin: 10px;
-  height: 500px;
+  height: 450px;
   overflow-y: auto;
 }
 
@@ -20,7 +20,7 @@
   padding: 10px;
   margin: 10px 0;
   border-radius: 5px;
-  border: 2px darkslategray solid;
+  border: 1px darkslategray solid;
   cursor: pointer;
 }
 

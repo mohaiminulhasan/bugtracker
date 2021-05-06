@@ -148,40 +148,52 @@ export const UserMgt = () => {
     setSelectedUser(null);
   }
 
+  const btnStyle = 'border border-gray-500 px-4 rounded font-bold shadow-md m-1';
+  const selectStyle = 'border border-gray-500';
+
   return (
     <>
     <Topbar />
 
-    <h3>User Management</h3>
+    <div className="px-4">
+      <p className="font-bold text-gray-700 text-lg">User Management</p>
 
-    <div style={{ display: 'flex' }}>
-      <div>
-        <select name="projects" id="projects" size="5" style={{width: 200}}>
-          {loading ? <option>...loading</option> : 
-            data.map((item, index) => <option onClick={() => setProjectSlug(item.slug)} key={index} value={item.slug}>{item.title}</option>)
-          }
-        </select>
-      </div>
+      <div className="flex content-between">
+        <div className="flex-initial">
+          <select className={selectStyle} name="projects" id="projects" size="5" style={{width: 200}}>
+            {loading ? <option>...loading</option> : 
+              data.map((item, index) => <option onClick={() => setProjectSlug(item.slug)} key={index} value={item.slug}>{item.title}</option>)
+            }
+          </select>
+        </div>
 
-      <div>
-        <select onClick={onChange} name="users" id="users" size="5" style={{width: 200}}>
-          {usersLoading ? <option>Please select a project</option> : 
-            users.map((item, index) => <option key={index} value={item.username}>{item.username}</option>)
-          }
-        </select>
-      </div>
+        {/* users available */}
+        <div className="flex flex-1 justify-center ml-2 px-2">
+          <div className="flex-initial">
+            <p className="font-bold text-gray-700">Users Available</p>
+            <select className={selectStyle} onClick={onChange} name="users" id="users" size="5" style={{width: 200}}>
+              {usersLoading ? <option>Please select a project</option> : 
+                users.map((item, index) => <option key={index} value={item.username}>{item.username}</option>)
+              }
+            </select>
+          </div>
 
-      <div>
-        <button onClick={addToTeam}>&gt;</button> <br/>
-        <button onClick={removeFromTeam}>&lt;</button>
-      </div>
+          {/* buttons */}
+          <div className="flex flex-col flex-none justify-center">
+            <button className={btnStyle} onClick={addToTeam}>&gt;</button>
+            <button className={btnStyle} onClick={removeFromTeam}>&lt;</button>
+          </div>
 
-      <div>
-        <select onClick={onChange} name="team" id="team" size="5" style={{width: 200}}>
-          {teamLoading ? <option>Please select a project</option> : 
-            team.map((item, index) => <option key={index} value={item.username}>{item.username}</option>)
-          }
-        </select>
+          {/* users in project */}
+          <div className="flex-initial">
+            <p className="font-bold text-gray-700">Users in Project</p>
+            <select className={selectStyle} onClick={onChange} name="team" id="team" size="5" style={{width: 200}}>
+              {teamLoading ? <option>Please select a project</option> : 
+                team.map((item, index) => <option key={index} value={item.username}>{item.username}</option>)
+              }
+            </select>
+          </div>
+        </div>
       </div>
     </div>
     </>

@@ -90,34 +90,39 @@ export const RoleMgt = () => {
     setTeam(temp);
   }
 
+  const selectStyle = 'border border-gray-500';
+
   return (
     <>
     <Topbar />
 
-    <h3>Role Management</h3>
+    <div className="px-4">
+      <p className="font-bold text-gray-700 text-lg">Role Management</p>
 
-    <div style={{ display: 'flex' }}>
-      <div>
-        <select name="projects" id="projects" size="5" style={{width: 200}}>
-          {loading ? <option>...loading</option> : 
-            data.map((item, index) => <option onClick={() => setProjectSlug(item.slug)} key={index} value={item.slug}>{item.title}</option>)
+      <div className="flex">
+        <div className="flex-1">
+          <p className="font-bold text-gray-700">Projects</p>
+          <select className={selectStyle} name="projects" id="projects" size="5" style={{width: 200}}>
+            {loading ? <option>...loading</option> : 
+              data.map((item, index) => <option onClick={() => setProjectSlug(item.slug)} key={index} value={item.slug}>{item.title}</option>)
+            }
+          </select>
+        </div>
+
+        <div className="flex-1">
+          {projectSlug ? <p className="font-bold text-gray-700">Users in this project</p> : <p>Please select a project</p>}
+
+          { !teamLoading &&
+            team.map((item, index) => {
+              return <div key={index}>
+                <label>
+                  <input type='checkbox' name={item.username} value={item.username} checked={item.isAdmin} onChange={toggleAdmin} /> &nbsp;
+                  {item.username}
+                </label>
+              </div>
+            })
           }
-        </select>
-      </div>
-
-      <div>
-        <span>Users in this project</span> <br/>
-
-        { teamLoading ? <div>Please select a project.</div> :
-          team.map((item, index) => {
-            return <div key={index}>
-              <label>
-                <input type='checkbox' name={item.username} value={item.username} checked={item.isAdmin} onChange={toggleAdmin} />
-                {item.username}
-              </label>
-            </div>
-          })
-        }
+        </div>
       </div>
     </div>
     </>

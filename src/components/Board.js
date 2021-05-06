@@ -1,3 +1,5 @@
+import { BoardHeader } from './BoardHeader';
+
 export const Board = (props) => {
   const patchTicket = async (ticket_id, board_id) => {
     const uri = `http://127.0.0.1:8000/move/${ticket_id}/`;
@@ -29,16 +31,15 @@ export const Board = (props) => {
   const drop = e => {
     e.preventDefault();
     const ticket_id = e.dataTransfer.getData('ticket_id');
-    const ticket_parent_id = e.dataTransfer.getData('ticket_parent_id');
+    if (ticket_id !== "") {
+      const ticket_parent_id = e.dataTransfer.getData('ticket_parent_id');
 
-    if (e.target.id !== ticket_parent_id) {
-      const res = patchTicket(ticket_id, e.target.id);
+      if (e.target.id !== ticket_parent_id) {
+        const res = patchTicket(ticket_id, e.target.id);
 
-      if (res.response !== 'Invalid') {
-        const ticket = document.getElementById(ticket_id);
-        ticket.style.display = 'block';
-
-        e.target.appendChild(ticket);
+        if (res.response !== 'Invalid') {
+          props.moveElementInState(ticket_id, ticket_parent_id, e.target.id);
+        }
       }
     }
   }
@@ -54,7 +55,8 @@ export const Board = (props) => {
       onDrop={drop}
       onDragOver={dragOver}
     >
-    {props.children}
+      <BoardHeader heading={props.heading} />
+      {props.children}
     </div>
   );
 }

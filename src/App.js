@@ -1,7 +1,7 @@
 import './App.css';
 
 import { useContext } from 'react';
-import { Route, Redirect, Switch} from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 import { Login, Dashboard, MyProjects, UserMgt, RoleMgt } from './pages';
 
@@ -9,8 +9,6 @@ import { AuthContext } from './context/AuthContext';
 
 export const AuthenticatedRoute = ({ children, ...rest }) => {
   const authContext = useContext(AuthContext);
-
-  // console.log(children);
 
   return (
     <Route {...rest} render={() => 
