@@ -73,7 +73,12 @@ export const Project = () => {
     <>
     <div id='boards'>
       {loading ? null : statuses.map((status, index) => {
-        return <Board key={index} id={status} heading={statusDict[status]} moveElementInState={moveElementInState} className='border border-gray-500 rounded-t-md board'>
+        return <Board 
+                  key={index} 
+                  id={status} 
+                  heading={statusDict[status]} 
+                  moveElementInState={moveElementInState} 
+                  className='border border-gray-500 rounded-t-md board'>
           {
             data[status].map((item, index) => <Ticket 
                                                 key={index} 

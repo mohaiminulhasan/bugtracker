@@ -1,15 +1,17 @@
 #boards {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .board {
   display: flex;
   flex-direction: column;
   background-color: whitesmoke;
-  width: 250px;
+  width: 230px;
   padding: 10px;
-  margin: 10px;
+  /* margin-right: 40px; */
   height: 450px;
   overflow-y: auto;
 }

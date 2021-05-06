@@ -160,6 +160,7 @@ export const UserMgt = () => {
 
       <div className="flex content-between">
         <div className="flex-initial">
+          <p className="font-bold text-gray-700">Projects</p>
           <select className={selectStyle} name="projects" id="projects" size="5" style={{width: 200}}>
             {loading ? <option>...loading</option> : 
               data.map((item, index) => <option onClick={() => setProjectSlug(item.slug)} key={index} value={item.slug}>{item.title}</option>)
