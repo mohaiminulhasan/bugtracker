@@ -12,6 +12,9 @@ export const Project = () => {
   const { projectSlug }= useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const [ticket, setTicket] = useState(null);
+
   const statuses = ['IB', 'EM', 'IP', 'TS', 'CO'];
   const statusDict = {
     'IB': 'ICE BOX',
@@ -53,14 +56,17 @@ export const Project = () => {
     if (typeof obj !== "undefined") {
       tempObj = obj;
       temp[prev_board_id] = temp[prev_board_id].filter(x => x.id !== parseInt(ticket_id));
+      tempObj.status = next_board_id;
       temp[next_board_id].push(tempObj);
     }
 
     setData(temp);
   }
 
-  const handleClick = (id) => {
-    history.push(`${url}/ticket/${id}`)
+  const handleClick = (ticket_id, board_id) => {
+    const obj = data[board_id].find(x => x.id === ticket_id);
+    setTicket(obj);
+    history.push(`${url}/ticket/${ticket_id}`)
   }
 
   return (
@@ -74,7 +80,7 @@ export const Project = () => {
                                                 id={item.id} 
                                                 className='ticket' 
                                                 draggable="true"
-                                                onClick={() => handleClick(item.id)}
+                                                onClick={() => handleClick(item.id, item.status)}
                                                 >
                                                   {item.title}
                                                 </Ticket>)
@@ -86,7 +92,7 @@ export const Project = () => {
 
     <Switch>
       <AuthenticatedRoute path={`${path}/ticket/:id`}>
-        <TicketDetails />
+        <TicketDetails data={ticket} />
       </AuthenticatedRoute>
     </Switch>
     </>

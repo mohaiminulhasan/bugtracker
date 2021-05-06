@@ -1,39 +1,40 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-export const TicketDetails = () => {
+export const TicketDetails = ({ data }) => {
   const { id } = useParams();
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // const [data, setData] = useState(null);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
-      const uri = 'http://127.0.0.1:8000/tickets/' + id;
+    // async function fetchData() {
+      // const uri = 'http://127.0.0.1:8000/tickets/' + id;
 
-      let h = new Headers();
-      h.append('Content-Type', 'application/json');
-      h.append('Authorization', 'Token ' + localStorage.getItem('token'));
+      // let h = new Headers();
+      // h.append('Content-Type', 'application/json');
+      // h.append('Authorization', 'Token ' + localStorage.getItem('token'));
 
-      let req = new Request(uri, {
-        method: 'GET',
-        headers: h,
-        mode: 'cors'
-      });
+      // let req = new Request(uri, {
+      //   method: 'GET',
+      //   headers: h,
+      //   mode: 'cors'
+      // });
 
-      const response = await fetch(req);
-      const data = await response.json();
+      // const response = await fetch(req);
+      // const data = await response.json();
 
-      setData(data);
-      setLoading(false);
-    }
+      // setData(data);
+      // setLoading(false);
+    // }
 
-    fetchData();
+    // fetchData();
   }, [id])
 
   return (
     <>
     {
-      loading ? <span>loading...</span> :
+      // loading ? <span>loading...</span> :
+      data &&
         <div>
           <div>Title: <span>{data.title}</span></div>
           <div>Description: <span>{data.description}</span></div>
