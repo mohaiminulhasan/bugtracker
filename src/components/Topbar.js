@@ -17,7 +17,7 @@ export const Topbar = () => {
   const activeStyle = { color: 'black' }
 
   return (
-    <nav className="border border-gray-500 m-4 p-2 rounded">
+    <nav className="flex justify-around border border-gray-500 m-4 p-2 rounded">
       <NavLink className={linkStyle} activeStyle={activeStyle} to="/dashboard">Dashboard</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
       <NavLink className={linkStyle} activeStyle={activeStyle} to="/usermgt">User Management</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
       <NavLink className={linkStyle} activeStyle={activeStyle} to="/rolemgt">Role Management</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;

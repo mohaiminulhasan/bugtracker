@@ -4,6 +4,8 @@ export const BoardHeader = (props) => {
   }
 
   return (
-    <p onDragOver={dragOver} className="text-center bg-white border-2 border-gray-500 rounded-t-md">{props.heading}</p>
+    <div>
+      <p onDragOver={dragOver} className="text-center bg-white border-2 border-gray-500 rounded-t-md">{props.heading}</p>
+    </div>
   );
 }

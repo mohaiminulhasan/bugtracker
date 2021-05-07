@@ -44,6 +44,7 @@ export const MyProjects = () => {
     <div className="px-4">
       <p className="font-bold text-gray-700 text-lg">My Projects</p>
 
+      {/* sidebar */}
       <div className="flex">
         <div className="w-1/5">
           {loading ? <div>...loading</div> : 

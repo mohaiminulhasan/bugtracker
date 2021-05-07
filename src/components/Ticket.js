@@ -29,7 +29,7 @@ export const Ticket = (props) => {
       onDragEnd={dragEnd}
       onDragOver={dragOver}
       onClick={props.onClick}
-      style={props.selected ? style : null}
+      // style={props.selected ? style : null}
     >
       {props.children}
     </div>

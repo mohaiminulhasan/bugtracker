@@ -1,6 +1,11 @@
 import { BoardHeader } from './BoardHeader';
+import { AddForm } from '../components';
+import { useState } from 'react';
 
 export const Board = (props) => {
+  const [showAdd, setShowAdd] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+
   const patchTicket = async (ticket_id, board_id) => {
     const uri = `http://127.0.0.1:8000/move/${ticket_id}/`;
 
@@ -48,6 +53,11 @@ export const Board = (props) => {
     e.preventDefault();
   }
 
+  const handleClick = e => {
+    setShowAdd(false);
+    setShowForm(true);
+  }
+
   return (
     <div
       id={props.id}
@@ -56,6 +66,8 @@ export const Board = (props) => {
       onDragOver={dragOver}
     >
       <BoardHeader heading={props.heading} />
+      { showForm && <AddForm addTicket={props.addTicket} status={props.id} project={props.projectSlug} setShowAdd={setShowAdd} setShowForm={setShowForm} /> }
+      { showAdd && <button className="border-2 border-gray-500 border-t-0 bg-gray-300" onDragOver={(e) => e.stopPropagation()} onClick={handleClick}>Add</button> }
       {props.children}
     </div>
   );
