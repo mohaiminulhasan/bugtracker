@@ -9,9 +9,10 @@ import { AuthenticatedRoute } from '../App';
 export const Project = () => {
   let history = useHistory();
   let { path, url } = useRouteMatch();
-  const { projectSlug }= useParams();
+  const { projectSlug } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedTicketId, setSelectedTicketId] = useState(null);
 
   const [ticket, setTicket] = useState(null);
 
@@ -73,7 +74,12 @@ export const Project = () => {
     <>
     <div id='boards'>
       {loading ? null : statuses.map((status, index) => {
-        return <Board key={index} id={status} heading={statusDict[status]} moveElementInState={moveElementInState} className='border border-gray-500 rounded-t-md board'>
+        return <Board 
+                  key={index} 
+                  id={status} 
+                  heading={statusDict[status]} 
+                  moveElementInState={moveElementInState} 
+                  className='border border-gray-500 rounded-t-md board'>
           {
             data[status].map((item, index) => <Ticket 
                                                 key={index} 
@@ -81,6 +87,7 @@ export const Project = () => {
                                                 className='ticket' 
                                                 draggable="true"
                                                 onClick={() => handleClick(item.id, item.status)}
+                                                selected={selectedTicketId === item.id}
                                                 >
                                                   {item.title}
                                                 </Ticket>)
@@ -92,7 +99,7 @@ export const Project = () => {
 
     <Switch>
       <AuthenticatedRoute path={`${path}/ticket/:id`}>
-        <TicketDetails data={ticket} />
+        <TicketDetails data={ticket} selectId={setSelectedTicketId} />
       </AuthenticatedRoute>
     </Switch>
     </>

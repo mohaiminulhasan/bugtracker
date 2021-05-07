@@ -18,6 +18,8 @@ export const Ticket = (props) => {
     e.stopPropagation();
   }
 
+  const style = { borderLeft: '3px solid red' };
+
   return (
     <div
       id={props.id}
@@ -27,6 +29,7 @@ export const Ticket = (props) => {
       onDragEnd={dragEnd}
       onDragOver={dragOver}
       onClick={props.onClick}
+      style={props.selected ? style : null}
     >
       {props.children}
     </div>

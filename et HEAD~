@@ -1,0 +1,90 @@
+[33mcommit ed4a3fe70fd3bc6a76f1dfa2ba36700fbe27d608[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Thu May 6 16:21:14 2021 -0400
+
+    show ticket details in card style
+
+[33mcommit 786ad37de4d1a6f7cad2c753f52add347de949da[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Thu May 6 15:41:31 2021 -0400
+
+    while moving ticket, ticket details now changes status
+
+[33mcommit 17dd6826f051598e164bce637121a9aa8f103e90[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Thu May 6 15:18:24 2021 -0400
+
+    add tailwind and fix ticket moving among boards through state
+
+[33mcommit 3ac04c915745254f7d3161478a43d83951c2542b[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Wed May 5 08:46:15 2021 -0400
+
+    drag and drop fixed
+
+[33mcommit d2513b62030dce3ca0e671037e3d9692775aa45a[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Wed May 5 07:12:12 2021 -0400
+
+    drag and drop works
+
+[33mcommit bce2b434f581695dba4508aadc354b5e2a60ef51[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Sun May 2 18:50:17 2021 -0400
+
+    add user as admin
+
+[33mcommit 66f86465f4e89c004d021264e3afb7a8dc4ecc1b[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Fri Apr 30 11:03:09 2021 -0400
+
+    working user management
+
+[33mcommit d90bf03cb073dfd2f443457fc5286dbff8b400ef[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Thu Apr 29 13:26:43 2021 -0400
+
+    display project list
+
+[33mcommit 713ad290b049866416004275308d9e711942bdd6[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Thu Apr 29 09:12:57 2021 -0400
+
+    display list of tickets
+
+[33mcommit f3d6d0c08125eac661de1266080cae94ecb8a002[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Wed Apr 28 06:39:10 2021 -0400
+
+    Add topbar and logout function
+
+[33mcommit bd57655cc7b171ecfcb461a8b3fb38453a836420[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Wed Apr 28 03:02:07 2021 -0400
+
+    fix the 'hooks in class' error
+
+[33mcommit 722c3c9019b2208cab3176447b9295d3fdea417a[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Tue Apr 27 08:00:35 2021 -0400
+
+    Complete login flow. User will redirect to /dashboard upon successfully completing the
+    login process. Backend authentication needs to work for a working app.
+
+[33mcommit fa78a0c8df2cbed0fe9621825e914768c33e3a64[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Tue Apr 27 07:15:30 2021 -0400
+
+    add routing
+
+[33mcommit 9a150f6fb039762c1ff11f79eeda7f90a6e70e0c[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Tue Apr 27 01:23:55 2021 -0400
+
+    create login form
+
+[33mcommit 4246f37d37e7d6bef193f4c6b79d7d1de6a7ae4c[m
+Author: Mohaiminul Hasan <hasan.mohaiminul@gmail.com>
+Date:   Mon Apr 26 04:03:17 2021 -0400
+
+    Initialize project using Create React App
