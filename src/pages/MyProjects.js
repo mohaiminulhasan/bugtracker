@@ -46,13 +46,13 @@ export const MyProjects = () => {
 
       {/* sidebar */}
       <div className="flex">
-        <div className="w-1/5">
+        <div className="w-48">
           {loading ? <div>...loading</div> : 
             data.map((item, index) => <div key={index}><NavLink className="leading-loose" activeStyle={projectLinkActiveStyle} to={`${url}/${item.slug}`}>{item.title}</NavLink></div>)
           }
         </div>
 
-        <div className="w-4/5">
+        <div className="w-full">
           <Switch>
             <AuthenticatedRoute path={`${path}/:projectSlug`}>
               <Project />

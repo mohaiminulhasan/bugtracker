@@ -41,6 +41,11 @@ export const Login = () => {
 
     const textboxStyle = 'border-2 rounded border-indigo-600 my-1 px-1 w-full';
 
+    const loginUser = (username, e) => {
+        setUsername(username);
+        setPassword('userpass');
+    }
+
     return (
         <div className="flex h-screen">
             <div className="border-2 rounded-lg p-5 m-auto mt-1/4 w-1/4 min-w-max">
@@ -58,6 +63,10 @@ export const Login = () => {
                     <button className="bg-white text-indigo-600 font-bold px-4 py-1 rounded border-2 border-indigo-300 hover:shadow-md" type='submit' disabled={loginLoading}>Login</button>
                 </div>
             </form>
+
+            <button onClick={(e) => loginUser('michel', e)} className="border-2 border-red-500 rounded px-2 py-1 bg-red-200 text-red-500 font-bold block m-1 w-1/2">Login as Michel</button>
+            <button onClick={() => loginUser('afrin')} className="border-2 border-blue-500 rounded px-2 py-1 bg-blue-300 text-gray-500 font-bold block m-1 w-1/2">Login as Afrin</button>
+            <button onClick={() => loginUser('zarif')} className="border-2 border-gray-500 rounded px-2 py-1 bg-gray-200 text-gray-500 font-bold block m-1 w-1/2">Login as Zarif</button>
             </div>
         </div>
     );
