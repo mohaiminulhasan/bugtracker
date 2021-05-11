@@ -7,7 +7,11 @@ module.exports = {
   variants: {
     extend: {
       opacity: ['disabled'],
-      backgroundColor: ['even'],
+      backgroundColor: ['even', 'disabled'],
+      textColor: ['disabled'],
+      padding: ['hover'],
+      margin: ['hover'],
+      borderColor: ['hover'],
     },
   },
   plugins: [],

@@ -1,5 +1,6 @@
 import '../assets/Project.css';
 import { Board, Ticket, TicketDetails } from '../components';
+import { Topbar } from '../components/Topbar';
 
 import { useEffect, useState } from "react";
 import { Switch, useRouteMatch, useHistory, useParams } from 'react-router-dom';
@@ -72,6 +73,7 @@ export const Project = () => {
 
   return (
     <>
+    <Topbar title={projectSlug} projectSlug={projectSlug} />
     <div id='boards'>
       {loading ? null : statuses.map((status, index) => {
         return <Board 

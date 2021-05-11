@@ -49,7 +49,7 @@ export const Login = () => {
     return (
         <div className="flex h-screen">
             <div className="border-2 rounded-lg p-5 m-auto mt-1/4 w-1/4 min-w-max">
-            {redirectOnLogin && <Redirect to='/dashboard' />}
+            {redirectOnLogin && <Redirect to='/home' />}
             <p className="font-bold text-indigo-600">Sign In with your credentials</p>
 
             <em>{ loginSuccess }</em>

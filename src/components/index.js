@@ -5,3 +5,8 @@ export * from './TicketDetails';
 export * from './AddForm';
 export * from './Comments';
 export * from './History';
+export * from './ProjectIcon';
+export * from './ProjectIconBare';
+export * from './NewProjectIcon';
+export * from './Toolbar';
+export * from './ProfileMenu';

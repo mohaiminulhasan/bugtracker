@@ -1,28 +1,26 @@
-import { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { ProjectIconBare } from '.';
+import { ProfileMenu } from '.';
+import { Midbar } from './TopbarDir/Midbar';
 
-import { AuthContext } from '../context/AuthContext';
-
-export const Topbar = () => {
-  const authContext = useContext(AuthContext);
-
-  const handleLogout = e => {
-    e.preventDefault();
-
-    authContext.logout();
-  }
-
-  const linkStyle = 'text-indigo-500 hover:underline font-bold';
-  const linkAltStyle = 'text-red-500 hover:underline font-bold';
-  const activeStyle = { color: 'black' }
-
+export const Topbar = (props) => {
   return (
-    <nav className="flex justify-around border border-gray-500 m-4 p-2 rounded">
-      <NavLink className={linkStyle} activeStyle={activeStyle} to="/dashboard">Dashboard</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
-      <NavLink className={linkStyle} activeStyle={activeStyle} to="/usermgt">User Management</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
-      <NavLink className={linkStyle} activeStyle={activeStyle} to="/rolemgt">Role Management</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
-      <NavLink className={linkStyle} activeStyle={activeStyle} to="/myprojects">My Projects</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
-      <NavLink className={linkAltStyle} to="/logout" onClick={handleLogout}>Logout</NavLink>
-    </nav>
+    <div className='h-16 flex justify-between'>
+      <div className='h-16 w-16 flex'>
+        <div className='m-auto p-2 cursor-pointer rounded-lg delay-50 duration-300 hover:bg-gray-200 text-gray-400 hover:text-gray-500'>
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </div>
+      </div>
+
+      <div className='h-16 flex flex-1'>
+        <ProjectIconBare size={12} iconsize={8} />
+        <Midbar {...props} />
+      </div>
+
+      <div className='my-auto mr-4'>
+        <ProfileMenu />
+      </div>
+    </div>
   );
 }

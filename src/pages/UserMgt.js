@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Topbar } from '../components';
+import { Topbar } from '../components/Topbar';
 
 export const UserMgt = () => {
   const [selectedUser, setSelectedUser] = useState(null);

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Topbar } from '../components';
 import { NavLink, useRouteMatch, Switch } from 'react-router-dom';
 import { AuthenticatedRoute } from '../App';
 
@@ -39,18 +38,16 @@ export const MyProjects = () => {
 
   return (
     <>
-    <Topbar />
-
-    <div className="px-4">
-      <p className="font-bold text-gray-700 text-lg">My Projects</p>
+    <div className="">
+      {/* <p className="font-bold text-gray-700 text-lg">My Projects</p> */}
 
       {/* sidebar */}
       <div className="flex">
-        <div className="w-48">
+        {/* <div className="w-48">
           {loading ? <div>...loading</div> : 
             data.map((item, index) => <div key={index}><NavLink className="leading-loose" activeStyle={projectLinkActiveStyle} to={`${url}/${item.slug}`}>{item.title}</NavLink></div>)
           }
-        </div>
+        </div> */}
 
         <div className="w-full">
           <Switch>

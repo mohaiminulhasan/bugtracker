@@ -3,7 +3,7 @@ import './App.css';
 import { useContext } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
-import { Login, Dashboard, MyProjects, UserMgt, RoleMgt } from './pages';
+import { Login, Home, NewProject, MyProjects, UserMgt, RoleMgt } from './pages';
 
 import { AuthContext } from './context/AuthContext';
 
@@ -27,8 +27,11 @@ const AppRoutes = () => {
       <Route exact path="/">
         <Login />
       </Route>
-      <AuthenticatedRoute path="/dashboard">
-        <Dashboard />
+      <AuthenticatedRoute path="/home">
+        <Home />
+      </AuthenticatedRoute>
+      <AuthenticatedRoute path="/new/project">
+        <NewProject />
       </AuthenticatedRoute>
       <AuthenticatedRoute path="/myprojects">
         <MyProjects />
