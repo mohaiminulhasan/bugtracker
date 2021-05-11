@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { ProjectIcon, NewProjectIcon, Toolbar } from '../components';
-import { Topbar } from '../components/Topbar';
+import { ProjectIcon, NewProjectIcon } from '../components';
+import { Topbar } from '../components/TopbarDir';
 
 export const Home = () => {
   const [projects, setProjects] = useState(null);
@@ -34,7 +34,6 @@ export const Home = () => {
   return (
     <div className='flex flex-col h-screen'>
       <Topbar title='Home' />
-      <Toolbar />
 
       <div className='m-auto'>
         <div className='text-gray-700 font-bold p-4 border-b border-gray-500 mx-10 mb-4'>My Projects</div>

@@ -19,13 +19,11 @@ export const ProjectMenu = () => {
     [
       {
         'title': 'Edit project details',
-        'onClick': null
       }
     ], 
     [
       {
         'title': 'Delete project',
-        'onClick': null,
         'textfg': 'red-500'
       }
     ], 

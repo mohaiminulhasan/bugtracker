@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 import { useHistory } from 'react-router-dom';
 
-import { Dropdown } from './Dropdown';
+import { Dropdown } from '../Dropdown';
 
 export const ProfileMenu = () => {
   const history = useHistory();

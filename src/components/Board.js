@@ -66,8 +66,8 @@ export const Board = (props) => {
       onDragOver={dragOver}
     >
       <BoardHeader heading={props.heading} />
-      { showForm && <AddForm addTicket={props.addTicket} status={props.id} project={props.projectSlug} setShowAdd={setShowAdd} setShowForm={setShowForm} /> }
-      { showAdd && <button className="border-2 border-gray-500 border-t-0 bg-gray-300" onDragOver={(e) => e.stopPropagation()} onClick={handleClick}>Add</button> }
+      {/* { showForm && <AddForm addTicket={props.addTicket} status={props.id} project={props.projectSlug} setShowAdd={setShowAdd} setShowForm={setShowForm} /> } */}
+      {/* { showAdd && <button className="border-2 border-gray-500 border-t-0 bg-gray-300" onDragOver={(e) => e.stopPropagation()} onClick={handleClick}>Add</button> } */}
       {props.children}
     </div>
   );

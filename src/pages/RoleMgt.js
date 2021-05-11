@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Topbar } from "../components/Topbar"
+import { Topbar } from "../components/TopbarDir/Topbar"
 
 export const RoleMgt = () => {
   const [projectSlug, setProjectSlug] = useState(null);

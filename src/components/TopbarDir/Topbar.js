@@ -1,6 +1,6 @@
-import { ProjectIconBare } from '.';
-import { ProfileMenu } from '.';
-import { Midbar } from './TopbarDir/Midbar';
+import { ProjectIconBare } from './ProjectIconBare';
+import { ProfileMenu } from './ProfileMenu';
+import { Midbar } from './Midbar';
 
 export const Topbar = (props) => {
   return (

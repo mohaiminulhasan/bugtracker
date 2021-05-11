@@ -1,11 +1,10 @@
 import '../assets/Project.css';
-import { Board, Ticket, TicketDetails } from '../components';
-import { Topbar } from '../components/Topbar';
+import { Board, Ticket, TicketDetails, Toolbar } from '../components';
+import { Topbar } from '../components/TopbarDir';
 
 import { useEffect, useState } from "react";
 import { Switch, useRouteMatch, useHistory, useParams } from 'react-router-dom';
 import { AuthenticatedRoute } from '../App';
-
 
 export const Project = () => {
   let history = useHistory();
@@ -74,7 +73,8 @@ export const Project = () => {
   return (
     <>
     <Topbar title={projectSlug} projectSlug={projectSlug} />
-    <div id='boards'>
+    <Toolbar />
+    <div id='boards' className='shadow-inner overflow-auto'>
       {loading ? null : statuses.map((status, index) => {
         return <Board 
                   key={index} 
@@ -83,12 +83,12 @@ export const Project = () => {
                   heading={statusDict[status]}
                   addTicket={addTicket}
                   moveElementInState={moveElementInState } 
-                  className='border border-gray-500 rounded-t-md board'>
+                  className='board'>
           {
             data[status].map((item, index) => <Ticket 
                                                 key={index} 
                                                 id={item.id} 
-                                                className='ticket' 
+                                                className='p-3 bg-white shadow-md rounded-lg mb-2 border text-gray-800 cursor-pointer hover:shadow-lg hover:border-gray-300 delay-50 duration-300' 
                                                 draggable="true"
                                                 onClick={() => handleClick(item.id)}
                                                 >
