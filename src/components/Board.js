@@ -61,9 +61,10 @@ export const Board = (props) => {
   return (
     <div
       id={props.id}
-      className={props.className}
+      className={`BOARD ${props.className}`}
       onDrop={drop}
       onDragOver={dragOver}
+      style={props.style}
     >
       <BoardHeader heading={props.heading} />
       {/* { showForm && <AddForm addTicket={props.addTicket} status={props.id} project={props.projectSlug} setShowAdd={setShowAdd} setShowForm={setShowForm} /> } */}

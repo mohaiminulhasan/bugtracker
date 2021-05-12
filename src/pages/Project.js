@@ -1,4 +1,3 @@
-import '../assets/Project.css';
 import { Board, Ticket, TicketDetails, Toolbar } from '../components';
 import { Topbar } from '../components/TopbarDir';
 
@@ -71,40 +70,43 @@ export const Project = () => {
   }
 
   return (
-    <>
-    <Topbar title={projectSlug} projectSlug={projectSlug} />
-    <Toolbar />
-    <div id='boards' className='shadow-inner overflow-auto'>
-      {loading ? null : statuses.map((status, index) => {
-        return <Board 
-                  key={index} 
-                  id={status} 
-                  projectSlug={projectSlug}
-                  heading={statusDict[status]}
-                  addTicket={addTicket}
-                  moveElementInState={moveElementInState } 
-                  className='board'>
-          {
-            data[status].map((item, index) => <Ticket 
-                                                key={index} 
-                                                id={item.id} 
-                                                className='p-3 bg-white shadow-md rounded-lg mb-2 border text-gray-800 cursor-pointer hover:shadow-lg hover:border-gray-300 delay-50 duration-300' 
-                                                draggable="true"
-                                                onClick={() => handleClick(item.id)}
-                                                >
-                                                  {item.title}
-                                                </Ticket>)
-          }
-        </Board>
-      })
-      }
-    </div>
+    <div className='PROJECT flex flex-col w-full'>
+      <Topbar title={projectSlug} projectSlug={projectSlug} />
+      <Toolbar />
+      <div id='boards' className='PROJECT flex bg-gray-50 shadow-inner overflow-x-auto' style={{ height: 'calc(100vh - 106px)'}}>
+        {
+          loading ? null : statuses.map((status, index) => {
+            return <Board 
+                      key={index} 
+                      id={status} 
+                      projectSlug={projectSlug}
+                      heading={statusDict[status]}
+                      addTicket={addTicket}
+                      moveElementInState={moveElementInState } 
+                      className='flex flex-col p-1 overflow-y-auto w-1/5'
+                      // style={{ minWidth: 300 }}
+                      >
+              {
+                data[status].map((item, index) => <Ticket 
+                                                    key={index} 
+                                                    id={item.id} 
+                                                    className='p-3 w-full bg-white shadow-md rounded-lg mb-2 border text-gray-800 cursor-pointer hover:shadow-lg hover:border-gray-300 delay-50 duration-300' 
+                                                    draggable="true"
+                                                    onClick={() => handleClick(item.id)}
+                                                    >
+                                                      {item.title}
+                                                    </Ticket>)
+              }
+            </Board>
+          })
+        }
+      </div>
 
-    <Switch>
-      <AuthenticatedRoute path={`${path}/ticket/:id`}>
-        <TicketDetails />
-      </AuthenticatedRoute>
-    </Switch>
-    </>
+      <Switch>
+        <AuthenticatedRoute path={`${path}/ticket/:id`}>
+          <TicketDetails />
+        </AuthenticatedRoute>
+      </Switch>
+    </div>
   );
 }

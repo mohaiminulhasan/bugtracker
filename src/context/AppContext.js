@@ -1,15 +1,15 @@
 import React, { useState, createContext } from 'react';
-import { useHistory } from 'react-router-dom';
 
 const AppContext = createContext();
 const { Provider } = AppContext;
 
 const AppProvider = ({ children }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   
   return (
       <Provider value={{
-        sidebarOpen
+        sidebarOpen,
+        setSidebarOpen
       }}>
           { children }
       </Provider>

@@ -1,6 +1,6 @@
 export const Toolbar = () => {
   return (
-    <div className='border-t px-5 py-2 flex justify-between items-center text-xs'>
+    <div className='TOOLBAR border-t px-5 py-2 flex justify-between items-center text-xs min-w-min'>
       <div className='text-gray-500'>Created on ...</div>
       <div className='flex text-gray-500 font-bold'>
         <div className='px-2 flex cursor-pointer hover:bg-gray-100 rounded p-1 delay-50 duration-300'>
