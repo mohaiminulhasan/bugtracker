@@ -3,6 +3,7 @@
     "titleBar.activeBackground": "#FFFF00",
     "titleBar.activeForeground": "#000000",
     "activityBar.background": "#FFFF00",
-    "activityBar.foreground": "#000000"
+    "activityBar.foreground": "#000000",
+    "synthwave84.brightness": "0.45"
   }
 }

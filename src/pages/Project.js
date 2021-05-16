@@ -1,4 +1,4 @@
-import { Board, Ticket, TicketDetails, Toolbar } from '../components';
+import { Board, Ticket, TicketDetails, Toolbar, AddTicket } from '../components';
 import { Topbar } from '../components/TopbarDir';
 
 import { useEffect, useState } from "react";
@@ -97,6 +97,10 @@ export const Project = () => {
                                                       {item.title}
                                                     </Ticket>)
               }
+              <AddTicket
+                moveElementInState={moveElementInState } 
+                id={status}
+              />
             </Board>
           })
         }
