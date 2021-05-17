@@ -1,6 +1,7 @@
 import { Board, Ticket, TicketDetails, Toolbar, AddTicket } from '../components';
 import { Topbar } from '../components/TopbarDir';
 
+import { DragDropContext } from 'react-beautiful-dnd';
 import { useEffect, useState } from "react";
 import { Switch, useRouteMatch, useHistory, useParams } from 'react-router-dom';
 import { AuthenticatedRoute } from '../App';
@@ -9,16 +10,64 @@ export const Project = () => {
   let history = useHistory();
   let { path, url } = useRouteMatch();
   const { projectSlug } = useParams();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
+  const [columns, setColumns] = useState({});
   const [loading, setLoading] = useState(true);
 
   const statuses = ['IB', 'EM', 'IP', 'TS', 'CO'];
-  const statusDict = {
-    'IB': 'ICE BOX',
-    'EM': 'EMERGENCY',
-    'IP': 'IN PROGRESS',
-    'TS': 'TESTING',
-    'CO': 'COMPLETE'
+
+  const patchTicket = async (ticket_id, board_id) => {
+    const uri = `http://127.0.0.1:8000/move/${ticket_id}/`;
+
+    let h = new Headers();
+    h.append('Content-Type', 'application/json');
+    h.append('Authorization', 'Token ' + localStorage.getItem('token'));
+
+    let req = new Request(uri, {
+      method: 'PATCH',
+      headers: h,
+      body: JSON.stringify({
+        'status': board_id
+      }),
+      mode: 'cors'
+    });
+
+    const response = await fetch(req);
+    let data = {};
+    if (response.ok) {
+      data = await response.json();
+    } else {
+      data = { 'response': 'Invalid' }
+    }
+
+    return data;
+  }
+
+  const moveTicket = async (source, sourceindex, destination, destinationindex) => {
+    const uri = `http://127.0.0.1:8000/move/from/${source}/${sourceindex}/to/${destination}/${destinationindex}/`;
+
+    let h = new Headers();
+    h.append('Content-Type', 'application/json');
+    h.append('Authorization', 'Token ' + localStorage.getItem('token'));
+
+    let req = new Request(uri, {
+      method: 'PATCH',
+      headers: h,
+      body: JSON.stringify({
+        'project': projectSlug
+      }),
+      mode: 'cors'
+    });
+
+    const response = await fetch(req);
+    let data = {};
+    if (response.ok) {
+      data = await response.json();
+    } else {
+      data = { 'response': 'Invalid' }
+    }
+
+    return data;
   }
 
   useEffect(() => {
@@ -38,79 +87,103 @@ export const Project = () => {
       const response = await fetch(req);
       const data = await response.json();
 
-      setData(data);
+      setData(data.tickets);
+      setColumns(data.columns);
       setLoading(false);
     }
 
     fetchData();
   }, [projectSlug]);
 
-  const moveElementInState = (ticket_id, prev_board_id, next_board_id) => {
-    let tempObj = {};
-    let temp = {...data};
-    let obj = temp[prev_board_id].find(x => x.id === parseInt(ticket_id));
+  const dragEnd = result => {
+    const { source, destination } = result;
 
-    if (typeof obj !== "undefined") {
-      tempObj = obj;
-      temp[prev_board_id] = temp[prev_board_id].filter(x => x.id !== parseInt(ticket_id));
-      temp[next_board_id].push(tempObj);
+    if (!destination) {
+      return;
     }
 
-    setData(temp);
-  }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
 
-  const handleClick = (ticket_id) => {
-    history.push(`${url}/ticket/${ticket_id}`)
-  }
+    const start = columns[source.droppableId];
+    const finish = columns[destination.droppableId];
 
-  const addTicket = (obj) => {
-    let temp = {...data};
-    temp[obj.status].push(obj);
-    setData(temp);
+    if (start === finish) {
+      const newTicketIds = Array.from(start.ticketIds);
+      const [removed] = newTicketIds.splice(source.index, 1); 
+      newTicketIds.splice(destination.index, 0, removed); 
+
+      const newColumn = {
+        ...start,
+        ticketIds: newTicketIds
+      }
+
+      const newColumns = {
+        ...columns,
+        [newColumn.id]: newColumn,
+      }
+
+      moveTicket(source.droppableId, source.index, destination.droppableId, destination.index);
+      setColumns(newColumns);
+      return;
+    }
+
+    const startTicketIds = Array.from(start.ticketIds);
+    const [removed] = startTicketIds.splice(source.index, 1);
+    const newStart = {
+      ...start,
+      ticketIds: startTicketIds,
+    };
+
+    const finishTicketIds = Array.from(finish.ticketIds);
+    finishTicketIds.splice(destination.index, 0, removed);
+    const newFinish = {
+      ...finish,
+      ticketIds: finishTicketIds,
+    };
+
+    const newColumns = {
+      ...columns,
+      [newStart.id]: newStart,
+      [newFinish.id]: newFinish
+    };
+
+    moveTicket(source.droppableId, source.index, destination.droppableId, destination.index);
+    setColumns(newColumns);
+    return;
   }
 
   return (
-    <div className='PROJECT flex flex-col w-full'>
-      <Topbar title={projectSlug} projectSlug={projectSlug} />
-      <Toolbar />
-      <div id='boards' className='PROJECT flex bg-gray-50 shadow-inner overflow-x-auto' style={{ height: 'calc(100vh - 106px)'}}>
-        {
-          loading ? null : statuses.map((status, index) => {
-            return <Board 
-                      key={index} 
-                      id={status} 
-                      projectSlug={projectSlug}
-                      heading={statusDict[status]}
-                      addTicket={addTicket}
-                      moveElementInState={moveElementInState } 
-                      className='flex flex-col p-1 overflow-y-auto w-1/5'
-                      // style={{ minWidth: 300 }}
-                      >
-              {
-                data[status].map((item, index) => <Ticket 
-                                                    key={index} 
-                                                    id={item.id} 
-                                                    className='p-3 w-full bg-white shadow-md rounded-lg mb-2 border text-gray-800 cursor-pointer hover:shadow-lg hover:border-gray-300 delay-50 duration-300' 
-                                                    draggable="true"
-                                                    onClick={() => handleClick(item.id)}
-                                                    >
-                                                      {item.title}
-                                                    </Ticket>)
-              }
-              <AddTicket
-                moveElementInState={moveElementInState } 
-                id={status}
-              />
-            </Board>
-          })
-        }
-      </div>
+      <div className='PROJECT flex flex-col w-full'>
+        <Topbar title={projectSlug} projectSlug={projectSlug} />
+        <Toolbar />
+        <DragDropContext onDragEnd={dragEnd}>
+          <div id='boards' className='PROJECT flex bg-gray-50 shadow-inner overflow-x-auto' style={{ height: 'calc(100vh - 106px)'}}>
+            {
+              loading ? null : statuses.map((status, index) => {
+                return <Board 
+                          key={index} 
+                          id={status} 
+                          heading={columns[status]['title']}
+                          data={data}
+                          columns={columns}
+                          status={status}
+                          className='flex flex-col p-1 w-1/5'
+                        />
+              })
+            }
+          </div>
+        </DragDropContext>
 
-      <Switch>
-        <AuthenticatedRoute path={`${path}/ticket/:id`}>
-          <TicketDetails />
-        </AuthenticatedRoute>
-      </Switch>
-    </div>
+        {/* <Switch>
+          <AuthenticatedRoute path={`${path}/ticket/:id`}>
+            <TicketDetails />
+          </AuthenticatedRoute>
+        </Switch> */}
+      </div>
   );
 }
