@@ -1,47 +1,17 @@
-import { Board, Ticket, TicketDetails, Toolbar, AddTicket } from '../components';
+import { Board, Toolbar } from '../components';
 import { Topbar } from '../components/TopbarDir';
 
 import { DragDropContext } from 'react-beautiful-dnd';
 import { useEffect, useState } from "react";
-import { Switch, useRouteMatch, useHistory, useParams } from 'react-router-dom';
-import { AuthenticatedRoute } from '../App';
+import { useParams } from 'react-router-dom';
 
 export const Project = () => {
-  let history = useHistory();
-  let { path, url } = useRouteMatch();
   const { projectSlug } = useParams();
   const [data, setData] = useState({});
   const [columns, setColumns] = useState({});
   const [loading, setLoading] = useState(true);
 
   const statuses = ['IB', 'EM', 'IP', 'TS', 'CO'];
-
-  // const patchTicket = async (ticket_id, board_id) => {
-  //   const uri = `http://127.0.0.1:8000/move/${ticket_id}/`;
-
-  //   let h = new Headers();
-  //   h.append('Content-Type', 'application/json');
-  //   h.append('Authorization', 'Token ' + localStorage.getItem('token'));
-
-  //   let req = new Request(uri, {
-  //     method: 'PATCH',
-  //     headers: h,
-  //     body: JSON.stringify({
-  //       'status': board_id
-  //     }),
-  //     mode: 'cors'
-  //   });
-
-  //   const response = await fetch(req);
-  //   let data = {};
-  //   if (response.ok) {
-  //     data = await response.json();
-  //   } else {
-  //     data = { 'response': 'Invalid' }
-  //   }
-
-  //   return data;
-  // }
 
   const moveTicket = async (source, sourceindex, destination, destinationindex) => {
     const uri = `http://127.0.0.1:8000/move/from/${source}/${sourceindex}/to/${destination}/${destinationindex}/`;
@@ -155,34 +125,28 @@ export const Project = () => {
   }
 
   return (
-      <div className='PROJECT flex flex-col w-full'>
-        <Topbar title={projectSlug} projectSlug={projectSlug} />
-        <Toolbar />
-        <DragDropContext onDragEnd={dragEnd}>
-          <div id='boards' className='PROJECT flex bg-gray-50 shadow-inner overflow-x-auto' style={{ height: 'calc(100vh - 106px)'}}>
-            {
-              loading ? null : statuses.map((status, index) => {
-                return <Board 
-                          key={index} 
-                          id={status} 
-                          heading={columns[status]['title']}
-                          data={data}
-                          columns={columns}
-                          setData={setData}
-                          setColumns={setColumns}
-                          status={status}
-                          className='flex flex-col p-1 w-1/5'
-                        />
-              })
-            }
-          </div>
-        </DragDropContext>
-
-        {/* <Switch>
-          <AuthenticatedRoute path={`${path}/ticket/:id`}>
-            <TicketDetails />
-          </AuthenticatedRoute>
-        </Switch> */}
-      </div>
+    <div className='PROJECT flex flex-col w-full'>
+      <Topbar title={projectSlug} projectSlug={projectSlug} />
+      <Toolbar />
+      <DragDropContext onDragEnd={dragEnd}>
+        <div id='boards' className='PROJECT flex bg-gray-50 shadow-inner overflow-x-auto' style={{ height: 'calc(100vh - 106px)'}}>
+          {
+            loading ? null : statuses.map((status, index) => {
+              return <Board 
+                        key={index} 
+                        id={status} 
+                        heading={columns[status]['title']}
+                        data={data}
+                        columns={columns}
+                        setData={setData}
+                        setColumns={setColumns}
+                        status={status}
+                        className='flex flex-col p-1 w-1/5'
+                      />
+            })
+          }
+        </div>
+      </DragDropContext>
+    </div>
   );
 }

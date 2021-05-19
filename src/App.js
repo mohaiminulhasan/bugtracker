@@ -3,7 +3,7 @@ import './App.css';
 import { useContext } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
-import { Login, Home, NewProject, MyProjects, Project, UserMgt, RoleMgt } from './pages';
+import { Login, Home, NewProject, Project, UserMgt, RoleMgt } from './pages';
 
 import { AuthContext } from './context/AuthContext';
 

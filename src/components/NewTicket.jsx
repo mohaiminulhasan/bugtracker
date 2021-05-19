@@ -61,7 +61,7 @@ export const NewTicket = (props) => {
     return () => {
       document.removeEventListener("mousedown", handleClick);
     };
-  }, []);
+  });
 
   return (
     <div ref={node}>
