@@ -8,3 +8,4 @@ export * from './ProjectIcon';
 export * from './NewProjectIcon';
 export * from './Toolbar';
 export * from './AddTicket';
+export * from './NewTicket';

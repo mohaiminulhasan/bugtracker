@@ -16,32 +16,32 @@ export const Project = () => {
 
   const statuses = ['IB', 'EM', 'IP', 'TS', 'CO'];
 
-  const patchTicket = async (ticket_id, board_id) => {
-    const uri = `http://127.0.0.1:8000/move/${ticket_id}/`;
+  // const patchTicket = async (ticket_id, board_id) => {
+  //   const uri = `http://127.0.0.1:8000/move/${ticket_id}/`;
 
-    let h = new Headers();
-    h.append('Content-Type', 'application/json');
-    h.append('Authorization', 'Token ' + localStorage.getItem('token'));
+  //   let h = new Headers();
+  //   h.append('Content-Type', 'application/json');
+  //   h.append('Authorization', 'Token ' + localStorage.getItem('token'));
 
-    let req = new Request(uri, {
-      method: 'PATCH',
-      headers: h,
-      body: JSON.stringify({
-        'status': board_id
-      }),
-      mode: 'cors'
-    });
+  //   let req = new Request(uri, {
+  //     method: 'PATCH',
+  //     headers: h,
+  //     body: JSON.stringify({
+  //       'status': board_id
+  //     }),
+  //     mode: 'cors'
+  //   });
 
-    const response = await fetch(req);
-    let data = {};
-    if (response.ok) {
-      data = await response.json();
-    } else {
-      data = { 'response': 'Invalid' }
-    }
+  //   const response = await fetch(req);
+  //   let data = {};
+  //   if (response.ok) {
+  //     data = await response.json();
+  //   } else {
+  //     data = { 'response': 'Invalid' }
+  //   }
 
-    return data;
-  }
+  //   return data;
+  // }
 
   const moveTicket = async (source, sourceindex, destination, destinationindex) => {
     const uri = `http://127.0.0.1:8000/move/from/${source}/${sourceindex}/to/${destination}/${destinationindex}/`;
@@ -112,6 +112,7 @@ export const Project = () => {
     const start = columns[source.droppableId];
     const finish = columns[destination.droppableId];
 
+    let newColumns = {};
     if (start === finish) {
       const newTicketIds = Array.from(start.ticketIds);
       const [removed] = newTicketIds.splice(source.index, 1); 
@@ -122,35 +123,31 @@ export const Project = () => {
         ticketIds: newTicketIds
       }
 
-      const newColumns = {
+      newColumns = {
         ...columns,
         [newColumn.id]: newColumn,
       }
+    } else {
+      const startTicketIds = Array.from(start.ticketIds);
+      const [removed] = startTicketIds.splice(source.index, 1);
+      const newStart = {
+        ...start,
+        ticketIds: startTicketIds,
+      };
 
-      moveTicket(source.droppableId, source.index, destination.droppableId, destination.index);
-      setColumns(newColumns);
-      return;
+      const finishTicketIds = Array.from(finish.ticketIds);
+      finishTicketIds.splice(destination.index, 0, removed);
+      const newFinish = {
+        ...finish,
+        ticketIds: finishTicketIds,
+      };
+
+      newColumns = {
+        ...columns,
+        [newStart.id]: newStart,
+        [newFinish.id]: newFinish
+      };
     }
-
-    const startTicketIds = Array.from(start.ticketIds);
-    const [removed] = startTicketIds.splice(source.index, 1);
-    const newStart = {
-      ...start,
-      ticketIds: startTicketIds,
-    };
-
-    const finishTicketIds = Array.from(finish.ticketIds);
-    finishTicketIds.splice(destination.index, 0, removed);
-    const newFinish = {
-      ...finish,
-      ticketIds: finishTicketIds,
-    };
-
-    const newColumns = {
-      ...columns,
-      [newStart.id]: newStart,
-      [newFinish.id]: newFinish
-    };
 
     moveTicket(source.droppableId, source.index, destination.droppableId, destination.index);
     setColumns(newColumns);
@@ -171,6 +168,8 @@ export const Project = () => {
                           heading={columns[status]['title']}
                           data={data}
                           columns={columns}
+                          setData={setData}
+                          setColumns={setColumns}
                           status={status}
                           className='flex flex-col p-1 w-1/5'
                         />
