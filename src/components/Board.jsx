@@ -26,7 +26,16 @@ export const Board = (props) => {
                           setData={props.setData} 
                           setColumns={props.setColumns} /> : null}
           {props.columns[props.status]['ticketIds'].map((item, index) => {
-            return props.data[item] && <Ticket key={item} index={index} ticket={props.data[item]} />
+            return props.data[item] && <Ticket 
+                                         key={item} 
+                                         index={index} 
+                                         status={props.status}
+                                         ticket={props.data[item]} 
+                                         data={props.data} 
+                                         columns={props.columns} 
+                                         setData={props.setData} 
+                                         setColumns={props.setColumns} 
+                                       />
           })}
           
           {provided.placeholder}

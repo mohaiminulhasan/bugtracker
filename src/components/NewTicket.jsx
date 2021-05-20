@@ -68,8 +68,6 @@ export const NewTicket = (props) => {
       <div
         className={`TICKET p-3 w-full bg-white shadow-md rounded-lg mb-2 border text-gray-800 hover:shadow-lg hover:border-gray-300 flex flex-col`}
       >
-        {props.status}
-        {projectSlug}
         <form onSubmit={handleSubmit}>
           <input type='text' className='p-1 w-full' autoFocus required value={title} onChange={e => setTitle(e.target.value)} />
           <div className='flex mt-4 h-8 justify-end'>
