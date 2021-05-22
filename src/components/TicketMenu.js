@@ -1,10 +1,13 @@
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 import { TicketDropdown } from './TicketDropdown';
 
 export const TicketMenu = (props) => {
+  const appContext = useContext(AppContext);
   const handleDelete = () => {
     console.log(props.ticket_id);
     async function postData() {
-      const uri = `http://127.0.0.1:8000/tickets/${props.ticket_id}/delete/`;
+      const uri = `${appContext.apiUrl}/tickets/${props.ticket_id}/delete/`;
 
       let h = new Headers();
       h.append('Content-Type', 'application/json');

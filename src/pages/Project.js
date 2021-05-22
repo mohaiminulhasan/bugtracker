@@ -2,19 +2,21 @@ import { Board, Toolbar } from '../components';
 import { Topbar } from '../components/TopbarDir';
 
 import { DragDropContext } from 'react-beautiful-dnd';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
 
 export const Project = () => {
   const { projectSlug } = useParams();
   const [data, setData] = useState({});
   const [columns, setColumns] = useState({});
   const [loading, setLoading] = useState(true);
+  const appContext = useContext(AppContext);
 
   const statuses = ['IB', 'EM', 'IP', 'TS', 'CO'];
 
   const moveTicket = async (source, sourceindex, destination, destinationindex) => {
-    const uri = `http://127.0.0.1:8000/move/from/${source}/${sourceindex}/to/${destination}/${destinationindex}/`;
+    const uri = `${appContext.apiUrl}/move/from/${source}/${sourceindex}/to/${destination}/${destinationindex}/`;
 
     let h = new Headers();
     h.append('Content-Type', 'application/json');
@@ -42,7 +44,7 @@ export const Project = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const uri = 'http://127.0.0.1:8000/tickets/in/' + projectSlug;
+      const uri = `${appContext.apiUrl}/tickets/in/${projectSlug}`;
 
       let h = new Headers();
       h.append('Content-Type', 'application/json');

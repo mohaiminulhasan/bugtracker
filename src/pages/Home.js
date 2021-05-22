@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { ProjectIcon, NewProjectIcon } from '../components';
 import { Topbar } from '../components/TopbarDir';
+import { AppContext } from "../context/AppContext";
 
 export const Home = () => {
   const [projects, setProjects] = useState(null);
   const [loading, setLoading] = useState(true);
+  const appContext = useContext(AppContext);
   
   useEffect(() => {
     async function fetchData() {
-      const uri = 'http://127.0.0.1:8000/projects';
+      const uri = `${appContext.apiUrl}/projects`;
 
       let h = new Headers();
       h.append('Content-Type', 'application/json');

@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
 
 export const NewProject = () => {
   const [project, setProject] = useState('');
   const history = useHistory();
+  const appContext = useContext(AppContext);
 
   useEffect(() => {
     document.addEventListener('keydown', e => {
@@ -17,7 +19,7 @@ export const NewProject = () => {
     e.preventDefault();
 
     async function postData() {
-      const uri = 'http://127.0.0.1:8000/projects/';
+      const uri = `${appContext.apiUrl}/projects/`;
 
       let h = new Headers();
       h.append('Content-Type', 'application/json');

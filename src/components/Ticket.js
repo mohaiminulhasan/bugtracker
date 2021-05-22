@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { TicketMenu } from './TicketMenu';
+import { AppContext } from '../context/AppContext';
 
 export const Ticket = (props) => {
+  const appContext = useContext(AppContext);
   const [showControls, setShowControls] = useState('hidden');
   const [editable, setEditable] = useState(false);
   const node = useRef();
@@ -13,7 +15,7 @@ export const Ticket = (props) => {
       console.log(props.ticket.id);
 
       async function postData() {
-        const uri = `http://127.0.0.1:8000/tickets/${props.ticket.id}/update/`;
+        const uri = `${appContext.apiUrl}/tickets/${props.ticket.id}/update/`;
 
         let h = new Headers();
         h.append('Content-Type', 'application/json');

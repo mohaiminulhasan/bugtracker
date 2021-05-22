@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from 'react-router-dom';
+import { AppContext } from "../context/AppContext";
 
 export const NewTicket = (props) => {
+  const appContext = useContext(AppContext)
   const node = useRef();
   const { projectSlug } = useParams();
   const [title, setTitle] = useState('');
@@ -16,7 +18,7 @@ export const NewTicket = (props) => {
     e.preventDefault();
 
     async function postData() {
-      const uri = 'http://127.0.0.1:8000/tickets/create/';
+      const uri = `${appContext.apiUrl}/tickets/create/`;
 
       let h = new Headers();
       h.append('Content-Type', 'application/json');

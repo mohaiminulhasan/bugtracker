@@ -22,7 +22,6 @@ export const Login = () => {
         try {
             setLoginLoading(true);
             const json = await userService.login(username, password);
-            // console.log(json); // remove later
             if (json.non_field_errors) {
                 throw new Error(json.non_field_errors[0]);
             }
@@ -64,9 +63,9 @@ export const Login = () => {
                 </div>
             </form>
 
-            <button onClick={(e) => loginUser('michel', e)} className="border-2 border-red-500 rounded px-2 py-1 bg-red-200 text-red-500 font-bold block m-1 w-1/2">Login as Michel</button>
-            <button onClick={() => loginUser('afrin')} className="border-2 border-blue-500 rounded px-2 py-1 bg-blue-300 text-gray-500 font-bold block m-1 w-1/2">Login as Afrin</button>
-            <button onClick={() => loginUser('zarif')} className="border-2 border-gray-500 rounded px-2 py-1 bg-gray-200 text-gray-500 font-bold block m-1 w-1/2">Login as Zarif</button>
+            <button onClick={(e) => loginUser('owner', e)} className="border-2 border-red-500 rounded px-2 py-1 bg-red-200 text-red-500 font-bold block m-1 w-1/2">Login as Owner</button>
+            {/* <button onClick={() => loginUser('admin')} className="border-2 border-blue-500 rounded px-2 py-1 bg-blue-300 text-gray-500 font-bold block m-1 w-1/2">Login as Admin</button> */}
+            <button onClick={() => loginUser('developer')} className="border-2 border-gray-500 rounded px-2 py-1 bg-gray-200 text-gray-500 font-bold block m-1 w-1/2">Login as Developer</button>
             </div>
         </div>
     );
