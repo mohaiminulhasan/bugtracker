@@ -11,7 +11,7 @@ export const NewProjectIcon = () => {
             </svg>
           </div>
         </div>
-        <div className='text-gray-700 tracking-wider uppercase text-xs font-bold mt-2'>New Project</div>
+        <div className='text-gray-700 tracking-wider uppercase text-xs font-bold mt-2 text-center'>New Project</div>
       </div>
     </Link>
   );

@@ -9,7 +9,7 @@ export const ProjectIcon = (props) => {
         <div>
           <ProjectIconBare size={props.size} iconsize={props.iconsize} />
         </div>
-        <div className='text-gray-700 tracking-wider uppercase text-xs font-bold mt-2'>{props.title}</div>
+        <div className='text-gray-700 tracking-wider uppercase text-xs font-bold mt-2 text-center'>{props.title}</div>
       </div>
     </Link>
   );

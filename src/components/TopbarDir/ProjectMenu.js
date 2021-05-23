@@ -31,7 +31,7 @@ export const ProjectMenu = () => {
 
   return (
     <>
-    <Dropdown icon={Icon} menubg='white' menufg='gray-500' rounded='lg' hover='hover:bg-gray-300' menuItems={menuItems} alignMenu='left' handleLogout={handleLogout}  />
+    <Dropdown icon={Icon} menubg='white' menufg='gray-500' rounded='lg' hover={true} menuItems={menuItems} alignMenu='left' handleLogout={handleLogout}  />
     </>
   );
 }

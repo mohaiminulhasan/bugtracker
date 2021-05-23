@@ -8,7 +8,7 @@ export const Dropdown = (props) => {
         {({ open }) => (
           <>
             <div>
-              <Menu.Button className={`inline-flex justify-center h-7 w-7 text-sm font-medium text-${props.menufg} bg-${props.menubg} rounded-${props.rounded} bg-opacity-20 hover:bg-opacity-30 ${props.hover} focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}>
+              <Menu.Button className={`inline-flex justify-center h-7 w-7 text-sm font-medium ${props.menufg === 'white' ? 'text-white' : 'text-gray-500'} ${props.menubg === 'black' ? 'bg-black' : 'bg-white'} ${props.rounded === 'full' ? 'rounded-full' : 'rounded-lg'} bg-opacity-20 hover:bg-opacity-30 ${props.hover ? 'hover:bg-gray-300' : null} focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}>
                 {props.icon}
               </Menu.Button>
             </div>
@@ -24,7 +24,7 @@ export const Dropdown = (props) => {
             >
               <Menu.Items
                 static
-                className={`absolute ${props.alignMenu}-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+                className={`absolute ${props.alignMenu === 'right' ? 'right-0' : 'left-0'} w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
               >
                 {
                   props.menuItems.map((item, index) => {
@@ -37,7 +37,7 @@ export const Dropdown = (props) => {
                                 {({ active }) => (
                                   <button
                                     className={`${
-                                      active ? "bg-gray-300" : `text-${el.textfg ? el.textfg : 'gray-900'}`
+                                      active ? "bg-gray-300" : 'text-gray-900'
                                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                                     onClick={el.onClick}
                                   >
