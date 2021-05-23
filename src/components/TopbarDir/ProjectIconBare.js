@@ -5,6 +5,10 @@ import { CubeTransparentIcon } from '@heroicons/react/solid';
  * w-12
  * h-8
  * w-8
+ * h-24
+ * w-24
+ * h-14
+ * w-14
  */
 export const ProjectIconBare = (props) => {
   return (
