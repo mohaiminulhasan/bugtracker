@@ -3,6 +3,8 @@ import { CubeTransparentIcon } from '@heroicons/react/solid';
  * PurgeCSS:
  * h-12
  * w-12
+ * h-8
+ * w-8
  */
 export const ProjectIconBare = (props) => {
   return (
