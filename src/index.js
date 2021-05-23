@@ -10,7 +10,7 @@ import { AppProvider } from './context/AppContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router basename='/bugtracker'>
       <AuthProvider>
         <AppProvider>
           <App />
