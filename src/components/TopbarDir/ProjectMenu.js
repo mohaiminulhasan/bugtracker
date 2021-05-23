@@ -24,7 +24,7 @@ export const ProjectMenu = () => {
     [
       {
         'title': 'Delete project',
-        'textfg': 'red-500'
+        'textfg': 'red'
       }
     ], 
   ];

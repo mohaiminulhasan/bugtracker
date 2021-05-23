@@ -37,7 +37,7 @@ export const Dropdown = (props) => {
                                 {({ active }) => (
                                   <button
                                     className={`${
-                                      active ? "bg-gray-300" : 'text-gray-900'
+                                      active ? "bg-gray-300" : el.textfg === 'red' ? 'text-red-500' : 'text-gray-900'
                                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                                     onClick={el.onClick}
                                   >
