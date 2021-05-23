@@ -24,7 +24,7 @@ export const Topbar = (props) => {
       }
 
       <div className={`h-16 flex flex-1 ${path === '/home' && 'ml-2'}`}>
-        <ProjectIconBare size={12} iconsize={8} />
+        <ProjectIconBare size='small' iconsize='small' />
         <Midbar {...props} />
       </div>
 

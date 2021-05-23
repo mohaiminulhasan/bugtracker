@@ -44,7 +44,7 @@ export const Home = () => {
           {
             loading ? <div>loading...</div> :
             projects.map((item, index) => (
-              <ProjectIcon to={`/myprojects/${item.slug}`} key={index} title={item.title} size={24} iconsize={14} />
+              <ProjectIcon to={`/myprojects/${item.slug}`} key={index} title={item.title} size='big' iconsize='big' />
             ))
           }
 
