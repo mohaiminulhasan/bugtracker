@@ -1,5 +1,9 @@
 import { CubeTransparentIcon } from '@heroicons/react/solid';
-
+/**
+ * PurgeCSS:
+ * h-12
+ * w-12
+ */
 export const ProjectIconBare = (props) => {
   return (
     <div className={`bg-indigo-900 h-${props.size} w-${props.size} rounded-xl flex filter drop-shadow-lg my-auto`}>
