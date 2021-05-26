@@ -1,4 +1,4 @@
-import { Board, Toolbar } from '../components';
+import { Board, TicketRetrieve, Toolbar } from '../components';
 import { Topbar } from '../components/TopbarDir';
 
 import { DragDropContext } from 'react-beautiful-dnd';
@@ -8,6 +8,7 @@ import { AppContext } from '../context/AppContext';
 
 export const Project = () => {
   const { projectSlug } = useParams();
+  const [project, setProject] = useState({});
   const [data, setData] = useState({});
   const [columns, setColumns] = useState({});
   const [loading, setLoading] = useState(true);
@@ -59,6 +60,7 @@ export const Project = () => {
       const response = await fetch(req);
       const data = await response.json();
 
+      setProject(data.project);
       setData(data.tickets);
       setColumns(data.columns);
       setLoading(false);
@@ -128,8 +130,8 @@ export const Project = () => {
 
   return (
     <div className='PROJECT flex flex-col w-full'>
-      <Topbar title={projectSlug} projectSlug={projectSlug} />
-      <Toolbar />
+      <Topbar title={project.title} projectSlug={projectSlug} />
+      <Toolbar created={project.created} />
       <DragDropContext onDragEnd={dragEnd}>
         <div id='boards' className='PROJECT flex bg-gray-50 shadow-inner overflow-x-auto' style={{ height: 'calc(100vh - 106px)'}}>
           {

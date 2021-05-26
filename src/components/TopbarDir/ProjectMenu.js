@@ -1,37 +1,81 @@
-import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
-import { useHistory } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import { AppContext } from '../../context/AppContext';
+import { Dialog } from '@headlessui/react';
 
 import { Dropdown } from '../Dropdown';
 
 export const ProjectMenu = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const history = useHistory();
-  const authContext = useContext(AuthContext);
+  const { projectSlug } = useParams();
+  const appContext = useContext(AppContext);
 
-  const handleLogout = e => {
-    e.preventDefault();
+  const handleDelete = e => {
+    async function postData() {
+      const uri = `${appContext.apiUrl}/projects/${projectSlug}/delete/`;
 
-    authContext.logout();
-    history.push('/');
+      let h = new Headers();
+      h.append('Content-Type', 'application/json');
+      h.append('Authorization', 'Token ' + localStorage.getItem('token'));
+
+      let req = new Request(uri, {
+        method: 'DELETE',
+        headers: h,
+        mode: 'cors'
+      });
+
+      await fetch(req);
+    }
+
+    postData();
+
+    history.push('/home');
+  }
+
+  const handleEdit = () => {
+    setIsOpen(true);
   }
   
   const menuItems = [
     [
       {
         'title': 'Edit project details',
+        'onClick': handleEdit
       }
     ], 
     [
       {
         'title': 'Delete project',
-        'textfg': 'red'
+        'textfg': 'red',
+        'onClick': handleDelete
       }
     ], 
   ];
 
   return (
     <>
-    <Dropdown icon={Icon} menubg='white' menufg='gray-500' rounded='lg' hover={true} menuItems={menuItems} alignMenu='left' handleLogout={handleLogout}  />
+    <Dropdown icon={Icon} menubg='white' menufg='gray-500' rounded='lg' hover={true} menuItems={menuItems} alignMenu='left' />
+
+    <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="fixed z-10 inset-0 overflow-y-auto">
+      <div className="flex items-center justify-center min-h-screen">
+        <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+
+        <div className="bg-white rounded max-w-sm mx-auto z-20 p-6">
+          <Dialog.Title>Edit Project</Dialog.Title>
+          <Dialog.Description>
+            This is a demo modal that will contain a form to update the project details.
+          </Dialog.Description>
+
+          <div className='mb-2'>
+            {/* Form goes here... */}
+          </div>
+
+          <button onClick={() => setIsOpen(false)} className='rounded py-1 px-2 border border-indigo-500 bg-indigo-500 text-white mr-2'>Save</button>
+          <button onClick={() => setIsOpen(false)} className='rounded py-1 px-2 border border-gray-500 bg-white text-gray-500'>Cancel</button>
+        </div>
+      </div>
+    </Dialog>
     </>
   );
 }

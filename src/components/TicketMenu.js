@@ -1,8 +1,10 @@
 import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { TicketDropdown } from './TicketDropdown';
+import { useHistory } from 'react-router-dom';
 
 export const TicketMenu = (props) => {
+  const history = useHistory();
   const appContext = useContext(AppContext);
   const handleDelete = () => {
     console.log(props.ticket_id);
@@ -43,10 +45,10 @@ export const TicketMenu = (props) => {
         'title': 'Edit',
         'onClick': handleEdit
       },
-      {
-        'title': 'View',
-        'onClick': null
-      }
+      // {
+      //   'title': 'View',
+      //   'onClick': null
+      // }
     ], 
     [
       {

@@ -15,7 +15,7 @@ export const Midbar = (props) => {
               <Link to={`/myprojects/${props.projectSlug}`}>Board</Link>
             </div>
             <div className='pl-5'>
-              <div className='pb-1 border-b-2 border-white hover:border-gray-500 cursor-pointer text-gray-500 font-medium hover:text-gray-900'>Messages</div>
+              <div className='pb-1 border-b-2 border-white hover:border-gray-500 cursor-pointer text-gray-500 font-medium hover:text-gray-900'>Settings</div>
             </div>
           </div>
         </div>

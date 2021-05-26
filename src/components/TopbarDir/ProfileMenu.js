@@ -17,12 +17,12 @@ export const ProfileMenu = () => {
   }
   
   const menuItems = [
-    [
-      {
-        'title': 'Settings',
-        'onClick': null
-      }
-    ], 
+    // [
+    //   {
+    //     'title': 'Settings',
+    //     'onClick': null
+    //   }
+    // ], 
     [
       {
         'title': 'Logout',
