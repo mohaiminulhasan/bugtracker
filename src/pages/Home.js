@@ -31,7 +31,7 @@ export const Home = () => {
     }
 
     fetchData();
-  }, []);
+  }, [projects]);
 
   return (
     <div className='flex flex-col h-screen'>
@@ -44,7 +44,7 @@ export const Home = () => {
           {
             loading ? <div>loading...</div> :
             projects.map((item, index) => (
-              <ProjectIcon to={`/myprojects/${item.slug}`} key={index} title={item.title} size='big' iconsize='big' />
+              <ProjectIcon to={`/${item.slug}`} key={index} title={item.title} size='big' iconsize='big' />
             ))
           }
 

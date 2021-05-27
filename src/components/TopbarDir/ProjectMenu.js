@@ -7,11 +7,12 @@ import { Dropdown } from '../Dropdown';
 
 export const ProjectMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const history = useHistory();
   const { projectSlug } = useParams();
   const appContext = useContext(AppContext);
 
-  const handleDelete = e => {
+  const confirmDelete = e => {
     async function postData() {
       const uri = `${appContext.apiUrl}/projects/${projectSlug}/delete/`;
 
@@ -31,6 +32,10 @@ export const ProjectMenu = () => {
     postData();
 
     history.push('/home');
+  }
+
+  const handleDelete = () => {
+    setIsDeleteOpen(true);
   }
 
   const handleEdit = () => {
@@ -56,6 +61,26 @@ export const ProjectMenu = () => {
   return (
     <>
     <Dropdown icon={Icon} menubg='white' menufg='gray-500' rounded='lg' hover={true} menuItems={menuItems} alignMenu='left' />
+
+    <Dialog open={isDeleteOpen} onClose={() => setIsDeleteOpen(false)} className="fixed z-10 inset-0 overflow-y-auto">
+      <div className="flex items-center justify-center min-h-screen">
+        <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+
+        <div className="bg-white rounded max-w-sm mx-auto z-20 p-6">
+          <Dialog.Title>Delete Project</Dialog.Title>
+          <Dialog.Description>
+            Do you really want to delete the project?
+          </Dialog.Description>
+
+          <div className='mb-2'>
+            All the tickets and comments associated with the project will be gone.
+          </div>
+
+          <button onClick={confirmDelete} className='rounded py-1 px-2 border border-red-500 bg-red-500 text-white mr-2'>Delete</button>
+          <button onClick={() => setIsOpen(false)} className='rounded py-1 px-2 border border-gray-500 bg-white text-gray-500'>Cancel</button>
+        </div>
+      </div>
+    </Dialog>
 
     <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="fixed z-10 inset-0 overflow-y-auto">
       <div className="flex items-center justify-center min-h-screen">
