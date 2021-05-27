@@ -33,9 +33,10 @@ export const ProjectSettings = () => {
   }, [projectSlug]);
 
   return (
-    <>
-    <Topbar title={project.title} projectSlug={projectSlug} />
-    <Toolbar created={project.created} />
-    </>
+    project &&
+      <>
+      <Topbar title={project.title} projectSlug={projectSlug} />
+      <Toolbar created={project.created} />
+      </>
   );
 }
