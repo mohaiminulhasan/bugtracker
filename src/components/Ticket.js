@@ -66,7 +66,7 @@ export const Ticket = (props) => {
           onMouseOut={() => { setShowControls('hidden');  }}
         >
 
-          {props.ticket.id} &nbsp;
+          {/* {props.ticket.id} &nbsp; */}
           <div 
             ref={node}
             contentEditable={editable} 
