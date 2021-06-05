@@ -55,7 +55,7 @@ export const Ticket = (props) => {
     <Draggable
       draggableId={props.ticket.id.toString()}
       index={props.index}
-      isDragDisabled={props.isDragDisabled}
+      // isDragDisabled={props.isDragDisabled}
     >
       {provided => (
         <div
