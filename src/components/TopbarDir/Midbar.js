@@ -5,7 +5,8 @@ export const Midbar = (props) => {
   const inactiveClass = 'pb-1 border-b-2 border-white hover:border-gray-500 cursor-pointer text-gray-500 font-medium hover:text-gray-900';
   const activeClass = 'pb-1 border-b-2 border-indigo-500 cursor-pointer text-indigo-500 font-medium';
   const patharray = window.location.pathname.split('/');
-  const settings = patharray[patharray.length - 1] === 'settings';
+  // const settings = patharray[patharray.length - 1] === 'settings';
+  const settings = patharray.includes('settings');
 
   if (props.projectSlug !== undefined) {
     return (

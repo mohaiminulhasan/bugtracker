@@ -26,6 +26,7 @@ export const Board = (props) => {
                           setData={props.setData} 
                           setColumns={props.setColumns} /> : null}
           {props.columns[props.status]['ticketIds'].map((item, index) => {
+            console.log(props.data[item].isDragDisabled)
             return props.data[item] && <Ticket 
                                          key={item} 
                                          index={index} 
@@ -35,6 +36,7 @@ export const Board = (props) => {
                                          columns={props.columns} 
                                          setData={props.setData} 
                                          setColumns={props.setColumns} 
+                                         isDragDisabled={props.data[item].isDragDisabled === "true"}
                                        />
           })}
           

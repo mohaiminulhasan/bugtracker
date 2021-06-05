@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
-import { Topbar } from '../components/TopbarDir/Topbar';
+// import { Topbar } from '../components/TopbarDir/Topbar';
 
 export const UserMgt = () => {
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const [projectSlug, setProjectSlug] = useState(null);
+  // const [projectSlug, setProjectSlug] = useState(null);
+  const { projectSlug } = useParams();
 
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // const [data, setData] = useState(null);
+  // const [loading, setLoading] = useState(true);
 
   const [users, setUsers] = useState(null);
   const [usersLoading, setUsersLoading] = useState(true);
@@ -16,29 +18,29 @@ export const UserMgt = () => {
   const [team, setTeam] = useState(null);
   const [teamLoading, setTeamLoading] = useState(true);
 
-  useEffect(() => {
-    async function fetchData() {
-      const uri = 'http://127.0.0.1:8000/owned/projects/';
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const uri = 'http://127.0.0.1:8000/owned/projects/';
 
-      let h = new Headers();
-      h.append('Content-Type', 'application/json');
-      h.append('Authorization', 'Token ' + localStorage.getItem('token'));
+  //     let h = new Headers();
+  //     h.append('Content-Type', 'application/json');
+  //     h.append('Authorization', 'Token ' + localStorage.getItem('token'));
 
-      let req = new Request(uri, {
-        method: 'GET',
-        headers: h,
-        mode: 'cors'
-      });
+  //     let req = new Request(uri, {
+  //       method: 'GET',
+  //       headers: h,
+  //       mode: 'cors'
+  //     });
 
-      const response = await fetch(req);
-      const data = await response.json();
+  //     const response = await fetch(req);
+  //     const data = await response.json();
       
-      setData(data);
-      setLoading(false);
-    }
+  //     setData(data);
+  //     setLoading(false);
+  //   }
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -153,20 +155,20 @@ export const UserMgt = () => {
 
   return (
     <>
-    <Topbar />
+    {/* <Topbar /> */}
 
     <div className="px-4">
-      <p className="font-bold text-gray-700 text-lg">User Management</p>
+      <p className="font-bold text-gray-700 text-lg text-center mb-8">User Management</p>
 
       <div className="flex content-between">
-        <div className="flex-initial">
+        {/* <div className="flex-initial">
           <p className="font-bold text-gray-700">Projects</p>
           <select className={selectStyle} name="projects" id="projects" size="5" style={{width: 200}}>
             {loading ? <option>...loading</option> : 
               data.map((item, index) => <option onClick={() => setProjectSlug(item.slug)} key={index} value={item.slug}>{item.title}</option>)
             }
           </select>
-        </div>
+        </div> */}
 
         {/* users available */}
         <div className="flex flex-1 justify-center ml-2 px-2">

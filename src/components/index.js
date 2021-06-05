@@ -10,3 +10,4 @@ export * from './Toolbar';
 export * from './AddTicket';
 export * from './NewTicket';
 export * from './TicketRetrieve';
+export * from './Toggle';

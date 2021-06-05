@@ -7,12 +7,18 @@ export const NewProject = () => {
   const history = useHistory();
   const appContext = useContext(AppContext);
 
+  const handleEscape = e => {
+    if(e.code === 'Escape') {
+      history.push('/home');
+    }
+  }
+
   useEffect(() => {
-    document.addEventListener('keydown', e => {
-      if(e.code === 'Escape') {
-        history.push('/home');
-      }
-    })
+    document.addEventListener('keydown', handleEscape)
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    }
   });
 
   const handleSubmit = e => {

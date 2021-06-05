@@ -8,6 +8,7 @@ import { Dropdown } from '../Dropdown';
 export const ProfileMenu = () => {
   const history = useHistory();
   const authContext = useContext(AuthContext);
+  const username = JSON.parse(localStorage.getItem('userInfo')).username;
 
   const handleLogout = e => {
     e.preventDefault();
@@ -32,9 +33,10 @@ export const ProfileMenu = () => {
   ];
 
   return (
-    <>
-    <Dropdown icon={Icon} menubg='black' menufg='white' rounded='full' menuItems={menuItems} alignMenu='right' handleLogout={handleLogout}  />
-    </>
+    <div className='flex'>
+      <div className='mr-2 text-gray-500'>{ username }</div>
+      <Dropdown icon={Icon} menubg='black' menufg='white' rounded='full' menuItems={menuItems} alignMenu='right' handleLogout={handleLogout}  />
+    </div>
   );
 }
 
