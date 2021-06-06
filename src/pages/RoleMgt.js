@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Toggle } from '../components';
+import { AppContext } from '../context/AppContext';
 // import { Topbar } from "../components/TopbarDir/Topbar"
 
 export const RoleMgt = () => {
   // const [projectSlug, setProjectSlug] = useState(null);
   const { projectSlug } = useParams();
+  const appContext = useContext(AppContext);
 
   // const [data, setData] = useState(null);
   // const [loading, setLoading] = useState(true);
@@ -39,7 +41,7 @@ export const RoleMgt = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const uri = `http://127.0.0.1:8000/teamusers/${projectSlug}/`;
+      const uri = `${appContext.apiUrl}/teamusers/${projectSlug}/`;
 
       let h = new Headers();
       h.append('Content-Type', 'application/json');

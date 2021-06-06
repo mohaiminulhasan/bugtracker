@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { AppContext } from '../context/AppContext';
 
 // import { Topbar } from '../components/TopbarDir/Topbar';
 
 export const UserMgt = () => {
+  const appContext = useContext(AppContext);
   const [selectedUser, setSelectedUser] = useState(null);
 
   // const [projectSlug, setProjectSlug] = useState(null);
@@ -44,7 +46,7 @@ export const UserMgt = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const uri = `http://127.0.0.1:8000/users/${projectSlug}/`;
+      const uri = `${appContext.apiUrl}/users/${projectSlug}/`;
 
       let h = new Headers();
       h.append('Content-Type', 'application/json');
@@ -68,7 +70,7 @@ export const UserMgt = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const uri = `http://127.0.0.1:8000/teamusers/${projectSlug}/`;
+      const uri = `${appContext.apiUrl}/teamusers/${projectSlug}/`;
 
       let h = new Headers();
       h.append('Content-Type', 'application/json');
@@ -99,7 +101,7 @@ export const UserMgt = () => {
       return
     }
 
-    const uri = `http://127.0.0.1:8000/add/${selectedUser}/to/team/${projectSlug}/`;
+    const uri = `${appContext.apiUrl}/add/${selectedUser}/to/team/${projectSlug}/`;
 
     let h = new Headers();
     h.append('Content-Type', 'application/json');
@@ -127,7 +129,7 @@ export const UserMgt = () => {
       return
     }
 
-    const uri = `http://127.0.0.1:8000/remove/${selectedUser}/from/team/${projectSlug}/`;
+    const uri = `${appContext.apiUrl}/remove/${selectedUser}/from/team/${projectSlug}/`;
 
     let h = new Headers();
     h.append('Content-Type', 'application/json');
