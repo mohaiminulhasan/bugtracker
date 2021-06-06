@@ -66,7 +66,7 @@ export const RoleMgt = () => {
   const toggleAdmin = async e => {
     let username = e.target.value;
 
-    const uri = `http://127.0.0.1:8000/toggle/${username}/to/${projectSlug}/as/admin/`;
+    const uri = `${appContext.apiUrl}/toggle/${username}/to/${projectSlug}/as/admin/`;
 
     let h = new Headers();
     h.append('Content-Type', 'application/json');
