@@ -31,7 +31,7 @@ export const Home = () => {
     }
 
     fetchData();
-  }, [projects]);
+  }, []);
 
   return (
     <div className='flex flex-col h-screen'>
