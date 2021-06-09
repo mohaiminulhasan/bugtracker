@@ -8,6 +8,8 @@ import { AppContext } from '../context/AppContext';
 
 export const Project = () => {
   const { projectSlug } = useParams();
+  const [isDeveloper, setIsDeveloper] = useState('true');
+  const [users, setUsers] = useState([]);
   const [project, setProject] = useState({});
   const [data, setData] = useState({});
   const [columns, setColumns] = useState({});
@@ -42,6 +44,52 @@ export const Project = () => {
 
     return data;
   }
+
+  useEffect(() => {
+    async function fetchUsers() {
+      const uri = `${appContext.apiUrl}/is/user/developer/in/${projectSlug}`;
+
+      let h = new Headers();
+      h.append('Content-Type', 'application/json');
+      h.append('Authorization', 'Token ' + localStorage.getItem('token'));
+
+      let req = new Request(uri, {
+        method: 'GET',
+        headers: h,
+        mode: 'cors'
+      });
+
+      const response = await fetch(req);
+      const data = await response.json();
+
+      setIsDeveloper(data);
+    }
+
+    fetchUsers();
+  }, [projectSlug]);
+
+  useEffect(() => {
+    async function fetchUsers() {
+      const uri = `${appContext.apiUrl}/users`;
+
+      let h = new Headers();
+      h.append('Content-Type', 'application/json');
+      h.append('Authorization', 'Token ' + localStorage.getItem('token'));
+
+      let req = new Request(uri, {
+        method: 'GET',
+        headers: h,
+        mode: 'cors'
+      });
+
+      const response = await fetch(req);
+      const data = await response.json();
+
+      setUsers(data);
+    }
+
+    fetchUsers();
+  }, [projectSlug]);
 
   useEffect(() => {
     async function fetchData() {
@@ -145,7 +193,9 @@ export const Project = () => {
                         setData={setData}
                         setColumns={setColumns}
                         status={status}
+                        users={users}
                         className='flex flex-col p-1 w-1/5'
+                        isDeveloper={isDeveloper}
                       />
             })
           }

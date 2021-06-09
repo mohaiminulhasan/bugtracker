@@ -65,7 +65,7 @@ export const Login = () => {
 
             <button onClick={(e) => loginUser('owner', e)} className="border-2 border-red-500 rounded px-2 py-1 bg-red-200 text-red-500 font-bold block m-1 w-1/2">Login as Project Owner</button>
             {/* <button onClick={() => loginUser('admin')} className="border-2 border-blue-500 rounded px-2 py-1 bg-blue-300 text-gray-500 font-bold block m-1 w-1/2">Login as Admin</button> */}
-            {/* <button onClick={() => loginUser('developer')} className="border-2 border-gray-500 rounded px-2 py-1 bg-gray-200 text-gray-500 font-bold block m-1 w-1/2">Login as Project Developer</button> */}
+            <button onClick={() => loginUser('developer')} className="border-2 border-gray-500 rounded px-2 py-1 bg-gray-200 text-gray-500 font-bold block m-1 w-1/2">Login as Project Developer</button>
             </div>
         </div>
     );

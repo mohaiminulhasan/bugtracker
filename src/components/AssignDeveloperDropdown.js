@@ -1,7 +1,7 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-export const TicketDropdown = (props) => {
+export const AssignDeveloperDropdown = (props) => {
   return (
     <div className={`${props.showControls}`}>
       <Menu as="div" className="relative inline-block">
@@ -27,11 +27,23 @@ export const TicketDropdown = (props) => {
                 className={`absolute ${props.alignMenu}-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
               >
                 {
-                  props.menuItems.map((item, index) => {
-                    return (
-                      <div className="px-1 py-1 " key={index}>
+                  // props.menuItems.map((item, index) => {
+                    // return (
+                      <div className="px-1 py-1 ">
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <button
+                                    className={`${
+                                      active ? "bg-gray-300" : `text-gray-900'`
+                                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                                    onClick={() => props.handleAssignDeveloper()}
+                                  >
+                                    None
+                                  </button>
+                                )}
+                              </Menu.Item>
                         {
-                          item.map((el, i) => {
+                          props.menuItems.map((el, i) => {
                             return (
                               <Menu.Item key={i}>
                                 {({ active }) => (
@@ -39,9 +51,9 @@ export const TicketDropdown = (props) => {
                                     className={`${
                                       active ? "bg-gray-300" : `text-${el.textfg ? el.textfg : 'gray-900'}`
                                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                                    onClick={el.onClick}
+                                    onClick={() => props.handleAssignDeveloper(el.id)}
                                   >
-                                    {el.title}
+                                    {el.username}
                                   </button>
                                 )}
                               </Menu.Item>
@@ -49,8 +61,8 @@ export const TicketDropdown = (props) => {
                           })
                         }
                       </div>
-                    )
-                  })
+                    // )
+                  // })
                 }
               </Menu.Items>
             </Transition>

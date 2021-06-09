@@ -16,7 +16,7 @@ export const Board = (props) => {
           className={`BOARD ${props.className}`}
           style={props.style}
         >
-          <BoardHeader heading={props.heading} setNewTicket={setNewTicket} />
+          <BoardHeader heading={props.heading} setNewTicket={setNewTicket} isDeveloper={props.isDeveloper} />
           
           {newTicket ? <NewTicket 
                           setNewTicket={setNewTicket} 
@@ -36,6 +36,8 @@ export const Board = (props) => {
                                          columns={props.columns} 
                                          setData={props.setData} 
                                          setColumns={props.setColumns} 
+                                         users={props.users}
+                                         isDeveloper={props.isDeveloper}
                                         //  isDragDisabled={props.data[item].isDragDisabled === "true"}
                                        />
           })}
