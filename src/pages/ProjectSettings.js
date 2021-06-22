@@ -44,7 +44,7 @@ export const ProjectSettings = () => {
       {
         project.settings === 'true' ?
         <div className='flex flex-row'>
-          <div className='flex flex-col flex-initial'>
+          <div className='flex flex-col flex-initial ml-4'>
             <NavLink to={`${url}/user/management`} activeClassName='underline'>User Management</NavLink>
             <NavLink to={`${url}/role/management`} activeClassName='underline'>Role Management</NavLink>
           </div>
