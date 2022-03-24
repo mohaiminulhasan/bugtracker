@@ -48,8 +48,7 @@ export const Login = () => {
     return (
         <div className="flex h-screen">
             <div className="border-2 rounded-lg p-5 m-auto mt-1/4 w-1/4 min-w-max">
-                Here's a video demo of this project that shows the functionalities that I've built.
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/6r_O4M3kqd8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/6r_O4M3kqd8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
             {redirectOnLogin && <Redirect to='/home' />}
             <p className="font-bold text-indigo-600">Sign In with your credentials</p>
 
